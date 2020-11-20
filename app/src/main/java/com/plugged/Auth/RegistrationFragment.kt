@@ -1,5 +1,4 @@
 package com.plugged.Auth
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -20,11 +19,11 @@ class RegistrationFragment : DialogFragment() {
         private const val KEY_TITLE = "KEY_TITLE"
         private const val KEY_SUBTITLE = "KEY_SUBTITLE"
 
-        fun newInstance(title: String = "", subTitle: String = ""): LoginFragment {
+        fun newInstance(title: String = "", subTitle: String = ""): RegistrationFragment {
             val args = Bundle()
             args.putString(KEY_TITLE, title)
             args.putString(KEY_SUBTITLE, subTitle)
-            val fragment = LoginFragment()
+            val fragment = RegistrationFragment()
             fragment.arguments = args
             return fragment
         }
@@ -37,7 +36,7 @@ class RegistrationFragment : DialogFragment() {
 
 
         view.sign_in.setOnClickListener {
-//Login Dialog
+            activity?.supportFragmentManager?.let { it1 -> LoginFragment.newInstance().show(it1,LoginFragment.TAG) }
             dismiss()
         }
     }

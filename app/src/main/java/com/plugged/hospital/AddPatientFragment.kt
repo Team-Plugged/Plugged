@@ -1,38 +1,19 @@
-package com.plugged.ui
+package com.plugged.hospital
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import androidx.fragment.app.DialogFragment
-import com.plugged.Auth.LoginFragment
+import androidx.fragment.app.Fragment
 import com.plugged.R
+import kotlinx.android.synthetic.main.fragment_add_patient.*
 import kotlinx.android.synthetic.main.fragment_register_patient.view.*
-
-class RegisterPatient : DialogFragment() {
-
-    companion object {
-
-        const val TAG = "Registration_Patient"
-
-        private const val KEY_TITLE = "KEY_TITLE"
-        private const val KEY_SUBTITLE = "KEY_SUBTITLE"
-
-        fun newInstance(title: String = "", subTitle: String = ""): RegisterPatient {
-            val args = Bundle()
-            args.putString(KEY_TITLE, title)
-            args.putString(KEY_SUBTITLE, subTitle)
-            val fragment = RegisterPatient()
-            fragment.arguments = args
-            return fragment
-        }
-
-    }
+import kotlinx.android.synthetic.main.fragment_register_patient.view.gender_spinner
 
 
+class AddPatientFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -43,15 +24,16 @@ class RegisterPatient : DialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_register_patient, container, false)
+        return inflater.inflate(R.layout.fragment_add_patient, container, false)
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val spinner_gender = view.gender_spinner
-        val spinner_blood_group = view.blood_group
-        val spinner_genotype = view.genotype
 
+        val spinner_gender = gender_spinner
+        val spinner_blood_group = blood_group
+        val spinner_genotype = genotype
 
         // Spinner For Gender
         var gender = "Male"
@@ -142,16 +124,7 @@ class RegisterPatient : DialogFragment() {
 
         }
 
-
-
     }
 
-    override fun onStart() {
-        super.onStart()
-        dialog?.window?.setLayout(
-            WindowManager.LayoutParams.MATCH_PARENT,
-            WindowManager.LayoutParams.MATCH_PARENT
-        )
-    }
 
 }

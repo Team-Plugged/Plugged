@@ -3,6 +3,8 @@ package com.plugged
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.plugged.home.HospitalActivity
+import com.plugged.home.PatientActivity
 import com.plugged.ui.TutorialActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -13,8 +15,11 @@ class MainActivity : AppCompatActivity() {
 
         btn_getStarted.setOnClickListener {
 
-            val intent = Intent(this,TutorialActivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(this,TutorialActivity::class.java)
+//            startActivity(intent)
+
+            startActivity(Intent(this,TutorialActivity::class.java))
         }
     }
 }
+

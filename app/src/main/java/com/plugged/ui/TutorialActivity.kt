@@ -21,7 +21,6 @@ class TutorialActivity : AppCompatActivity() {
     }
 
 
-
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu, menu)
@@ -31,18 +30,20 @@ class TutorialActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.mission -> {
-                LoginFragment.newInstance().show(supportFragmentManager, LoginFragment.TAG)
+//                LoginFragment.newInstance().show(supportFragmentManager, LoginFragment.TAG)
+                RegisterPatient.newInstance()
+                    .show(supportFragmentManager, RegisterPatient.TAG)
+
                 true
             }
-            R.id.auth ->{
+            R.id.auth -> {
                 LoginFragment.newInstance().show(supportFragmentManager, LoginFragment.TAG)
 
-//                RegistrationFragment.newInstance().show(supportFragmentManager, RegistrationFragment.TAG)
                 true
 
             }
-            R.id.about ->{
-                ContactUsFragment.newInstance().show(supportFragmentManager,ContactUsFragment.TAG)
+            R.id.about -> {
+                ContactUsFragment.newInstance().show(supportFragmentManager, ContactUsFragment.TAG)
                 return true
             }
             else -> super.onOptionsItemSelected(item)

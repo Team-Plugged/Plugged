@@ -26,6 +26,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
+        android:textSize="24sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
         android:text="Create your Plugged Account"
         app:layout_constraintStart_toStartOf="@+id/guideline5"
         app:layout_constraintTop_toTopOf="parent" />
@@ -33,12 +36,13 @@
     <EditText
         android:id="@+id/editTextTextPersonName5"
         android:layout_width="0dp"
+        android:padding="8dp"
         android:layout_height="50dp"
         android:layout_marginTop="24dp"
         android:background="@drawable/edit_text_bg"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Hospital Name"
+        android:hint="Hospital Name"
         app:layout_constraintEnd_toStartOf="@+id/guideline6"
         app:layout_constraintStart_toStartOf="@+id/guideline5"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
@@ -47,11 +51,12 @@
         android:id="@+id/editTextTextPersonName6"
         android:layout_width="0dp"
         android:layout_height="50dp"
+        android:padding="8dp"
         android:layout_marginTop="32dp"
         android:background="@drawable/edit_text_bg"
         android:ems="10"
         android:inputType="textEmailAddress"
-        android:text="Email"
+        android:hint="Email"
         app:layout_constraintEnd_toStartOf="@+id/guideline6"
         app:layout_constraintStart_toStartOf="@+id/guideline5"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5" />
@@ -60,12 +65,12 @@
         android:id="@+id/editTextTextPersonName7"
         android:layout_width="0dp"
         android:layout_height="50dp"
-
         android:layout_marginTop="32dp"
         android:background="@drawable/edit_text_bg"
         android:ems="10"
+        android:hint="Location"
+        android:padding="8dp"
         android:inputType="textPersonName"
-        android:text="Location"
         app:layout_constraintEnd_toStartOf="@+id/guideline6"
         app:layout_constraintStart_toStartOf="@+id/guideline5"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName6" />
@@ -90,7 +95,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:textSize="20sp"
         android:text="Sign in instead"
+        android:textColor="#C15227"
         app:layout_constraintStart_toStartOf="@+id/guideline5"
         app:layout_constraintTop_toBottomOf="@+id/login" />
 </androidx.constraintlayout.widget.ConstraintLayout>

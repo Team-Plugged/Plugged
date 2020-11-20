@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/dashBoardFragment"
+        android:title="Dashboard"/>
+
+    <item
+        android:id="@+id/addPatientFragment"
+        android:enabled="true"
+        android:title="Add Patient"/>
+    <item
+        android:id="@+id/addRecordFragment"
+        android:title="Add Record"/>
+    <item
+        android:id="@+id/searchFragment"
+        android:title="Search Patient"/>
+
+    <item
+        android:id="@+id/logout"
+        android:title="Log Out"/>
+
+</menu>

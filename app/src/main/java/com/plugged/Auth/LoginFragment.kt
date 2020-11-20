@@ -1,5 +1,6 @@
 package com.plugged.Auth
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.DialogFragment
 import com.plugged.R
+import com.plugged.home.HospitalActivity
 import kotlinx.android.synthetic.main.fragment_login.view.*
 
 
@@ -75,10 +77,17 @@ class LoginFragment : DialogFragment() {
 
         view.login.setOnClickListener {
 
+            startActivity(Intent(activity,HospitalActivity::class.java))
+
         }
 
         view.register.setOnClickListener {
-//            RegistrationFragment.newInstance().show(transact, RegistrationFragment.TAG)
+            activity?.supportFragmentManager?.let { it1 ->
+                RegistrationFragment.newInstance().show(
+                    it1, RegistrationFragment.TAG)
+            }
+            dismiss()
+
 
         }
     }
@@ -87,7 +96,7 @@ class LoginFragment : DialogFragment() {
         super.onStart()
         dialog?.window?.setLayout(
             WindowManager.LayoutParams.MATCH_PARENT,
-            WindowManager.LayoutParams.WRAP_CONTENT
+            WindowManager.LayoutParams.MATCH_PARENT
         )
     }
 }
