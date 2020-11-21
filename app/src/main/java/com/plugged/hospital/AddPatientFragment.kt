@@ -1,5 +1,7 @@
 package com.plugged.hospital
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,13 +14,9 @@ import kotlinx.android.synthetic.main.fragment_add_patient.*
 import kotlinx.android.synthetic.main.fragment_register_patient.view.*
 import kotlinx.android.synthetic.main.fragment_register_patient.view.gender_spinner
 
+private const val REQUEST_CODE_IMAGE_PICK = 100
 
 class AddPatientFragment : Fragment() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -124,6 +122,27 @@ class AddPatientFragment : Fragment() {
 
         }
 
+        image.setOnClickListener {
+
+            Intent(Intent.ACTION_GET_CONTENT).also {
+                it.type = "image/*"
+                startActivityForResult(
+                    it,
+                    REQUEST_CODE_IMAGE_PICK
+                )
+            }
+
+        }
+
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE_IMAGE_PICK) {
+            data?.data?.let {
+
+            }
+        }
     }
 
 

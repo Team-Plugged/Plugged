@@ -7,10 +7,13 @@
 
     <TextView
         android:id="@+id/textView5"
-        android:layout_width="175dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
+        android:fontFamily="sans-serif-condensed-medium"
         android:text="Register New Patient "
+        android:textSize="24sp"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -170,12 +173,15 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintTop_toBottomOf="@+id/image" />
 
-    <TextView
-        android:id="@+id/sign_in"
+    <com.tuyenmonkey.mkloader.MKLoader
+        android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sign in instead"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toBottomOf="@+id/login" />
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/age"
+        app:mk_color="@color/colorPrimary"
+        app:mk_type="ClassicSpinner" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
