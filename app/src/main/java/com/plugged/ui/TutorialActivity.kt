@@ -8,7 +8,10 @@ import com.plugged.Auth.LoginFragment
 import com.plugged.Auth.RegistrationFragment
 import com.plugged.ContactUsFragment
 import com.plugged.R
+import dagger.hilt.android.AndroidEntryPoint
 
+
+@AndroidEntryPoint
 class TutorialActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

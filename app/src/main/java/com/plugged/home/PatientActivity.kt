@@ -11,8 +11,9 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 import com.plugged.R
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_patient.*
-
+@AndroidEntryPoint
 class PatientActivity : AppCompatActivity() {
 
     lateinit var toolbar: Toolbar

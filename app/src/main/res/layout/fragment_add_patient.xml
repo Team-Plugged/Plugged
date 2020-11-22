@@ -32,7 +32,7 @@
         app:layout_constraintGuide_end="40dp" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName3"
+        android:id="@+id/edit_firstName"
         android:layout_width="169dp"
         android:layout_height="50dp"
         android:background="@drawable/edit_text_bg"
@@ -45,7 +45,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName4"
+        android:id="@+id/edit_lastName"
         android:layout_width="129dp"
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
@@ -54,10 +54,10 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:hint=" Last Name"
-        app:layout_constraintBottom_toBottomOf="@+id/editTextTextPersonName3"
+        app:layout_constraintBottom_toBottomOf="@+id/edit_firstName"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
-        app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName3"
-        app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName3" />
+        app:layout_constraintStart_toEndOf="@+id/edit_firstName"
+        app:layout_constraintTop_toTopOf="@+id/edit_firstName" />
 
     <Spinner
         android:id="@+id/gender_spinner"
@@ -67,10 +67,10 @@
         android:layout_marginTop="24dp"
         android:background="@drawable/edit_text_bg"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_firstName" />
 
     <EditText
-        android:id="@+id/age"
+        android:id="@+id/edit_age"
         android:padding="4dp"
         android:layout_width="70dp"
         android:layout_height="50dp"
@@ -93,9 +93,9 @@
         android:hint="Ht"
         android:ems="10"
         android:inputType="number"
-        app:layout_constraintBottom_toBottomOf="@+id/age"
-        app:layout_constraintStart_toEndOf="@+id/age"
-        app:layout_constraintTop_toTopOf="@+id/age" />
+        app:layout_constraintBottom_toBottomOf="@+id/edit_age"
+        app:layout_constraintStart_toEndOf="@+id/edit_age"
+        app:layout_constraintTop_toTopOf="@+id/edit_age" />
 
     <EditText
         android:id="@+id/edit_weight"
@@ -148,20 +148,22 @@
 
     <Button
         android:id="@+id/image"
+        style="?attr/materialButtonOutlinedStyle"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/btn_background"
+        android:elevation="4dp"
         android:text="Upload Image"
         android:textAllCaps="false"
         android:textColor="@color/colorPrimary"
-        style="?attr/materialButtonOutlinedStyle"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toBottomOf="@+id/edit_email" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_password" />
 
     <Button
-        android:id="@+id/login"
+        android:id="@+id/btn_login"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginTop="16dp"
@@ -177,11 +179,25 @@
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="visible"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/age"
+        app:layout_constraintTop_toBottomOf="@+id/edit_age"
         app:mk_color="@color/colorPrimary"
         app:mk_type="ClassicSpinner" />
+
+    <EditText
+        android:id="@+id/edit_password"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:padding="8dp"
+        android:background="@drawable/edit_text_bg"
+        android:hint="Password"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/edit_email" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

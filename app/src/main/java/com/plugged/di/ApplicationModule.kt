@@ -12,6 +12,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 
@@ -19,9 +20,9 @@ import javax.inject.Singleton
 @InstallIn(ApplicationComponent::class)
 class ApplicationModule {
 
-//    @Provides
-//    @Singleton
-//    fun provideApiHelper(apiHelper: ApiHelperImplementation): ApiHelper = apiHelper
+    @Provides
+    @Singleton
+    fun provideApiHelper(apiHelper: ApiHelperImplementation): ApiHelper = apiHelper
 
 
 
@@ -33,6 +34,9 @@ class ApplicationModule {
         logging.setLevel(HttpLoggingInterceptor.Level.BODY)
         val client = OkHttpClient.Builder()
             .addInterceptor(logging)
+            .connectTimeout(120, TimeUnit.SECONDS) //Backend is really slow
+            .writeTimeout(120, TimeUnit.SECONDS)
+            .readTimeout(120, TimeUnit.SECONDS)
             .build()
 
         return Retrofit.Builder()

@@ -9,8 +9,8 @@
     </string-array>
 
     <string-array name="genotype">
-        <item>geno a</item>
-        <item>Geno B</item>
+        <item>AA</item>
+        <item>AB</item>
     </string-array>
 
     <string-array name="gender">

@@ -2,20 +2,35 @@ package com.plugged.Auth
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
+import com.plugged.utils.Constants.Companion.TAG
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.plugged.R
 import com.plugged.home.HospitalActivity
+import com.plugged.models.Login
+import com.plugged.utils.Constants
+import com.plugged.utils.Resource
+import com.plugged.viewmodel.PluggedViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.fragment_add_patient.*
+import kotlinx.android.synthetic.main.fragment_login.*
+import kotlinx.android.synthetic.main.fragment_login.edit_email
+import kotlinx.android.synthetic.main.fragment_login.edit_password
 import kotlinx.android.synthetic.main.fragment_login.view.*
+import kotlinx.android.synthetic.main.fragment_login.view.edit_email
 
-
+@AndroidEntryPoint
 class LoginFragment : DialogFragment() {
-
+    private val viewModel: PluggedViewModel by viewModels()
 
     companion object {
 
@@ -47,6 +62,7 @@ class LoginFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val spinner = view.spinner_login
+        val progress_bar = view.progressBar
         var user = "Patient"
         val user_type = resources.getStringArray(R.array.user_type)
         if (spinner != null){
@@ -69,15 +85,70 @@ class LoginFragment : DialogFragment() {
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>) {
-                   user = "Hospital"
+                   user = "Patient"
                 }
             }
 
         }
 
-        view.login.setOnClickListener {
+        view.btn_login.setOnClickListener {
 
-            startActivity(Intent(activity,HospitalActivity::class.java))
+            if(edit_email.text.isNullOrEmpty())
+            {
+                edit_email.error = "Please input your email"
+                edit_email.requestFocus()
+                return@setOnClickListener
+            }
+
+            if (edit_password.text.isNullOrEmpty())
+            {
+                edit_password.error = "Please input your Password"
+                edit_password.requestFocus()
+                return@setOnClickListener
+            }
+            val email = edit_email.text.toString()
+            val password = edit_password.text.toString()
+
+            val Login = Login(email,password)
+            Log.d(Constants.TAG,Login.toString())
+
+            viewModel.LoginPatient(Login)
+
+            viewModel.loginResponse.observe(viewLifecycleOwner, Observer {response->
+
+                when(response)
+                {
+
+                    is Resource.Loading -> {
+
+                        progress_bar.visibility=View.VISIBLE
+                    }
+
+                    is Resource.Success->{
+                        progress_bar.visibility = View.INVISIBLE
+                       response.data?.let {Patient_Data->
+
+                           Log.d(TAG,Patient_Data.toString())
+
+
+                       }
+
+                    }
+
+                    is Resource.Error -> {
+                        progress_bar.visibility = View.INVISIBLE
+
+                        response.message?.let {
+                            Toast.makeText(activity, "Error Occured: $it", Toast.LENGTH_SHORT)
+                                .show()
+                        }
+                    }
+                }
+
+
+            })
+
+//            startActivity(Intent(activity,HospitalActivity::class.java))
 
         }
 

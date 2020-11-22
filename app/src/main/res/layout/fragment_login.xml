@@ -63,7 +63,7 @@
         app:layout_constraintTop_toBottomOf="@+id/register" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/edit_email"
         android:layout_width="0dp"
         android:padding="8dp"
         android:layout_height="50dp"
@@ -77,7 +77,7 @@
         app:layout_constraintTop_toBottomOf="@+id/spinner_login" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/edit_password"
         android:layout_width="0dp"
         android:padding="8dp"
         android:layout_height="50dp"
@@ -89,7 +89,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintHorizontal_bias="0.401"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_email" />
 
     <CheckBox
         android:id="@+id/checkBox"
@@ -98,10 +98,10 @@
         android:layout_marginTop="8dp"
         android:text="Keep me logged in"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_password" />
 
     <Button
-        android:id="@+id/login"
+        android:id="@+id/btn_login"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginTop="32dp"
@@ -121,14 +121,14 @@
         android:layout_marginTop="8dp"
         android:text="Forgot your password?"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/login" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_login" />
 
     <com.tuyenmonkey.mkloader.MKLoader
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="@+id/editTextTextPersonName2"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/edit_email"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:mk_color="@color/colorPrimary"
