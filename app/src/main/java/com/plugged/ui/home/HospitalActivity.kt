@@ -1,21 +1,21 @@
-package com.plugged.home
+package com.plugged.ui.home
 
 import android.os.Bundle
+import android.os.Handler
+import android.widget.Toast
+import android.widget.Toast.makeText
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.Navigation
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 import com.plugged.R
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_patient.*
-import kotlinx.android.synthetic.main.hospital_content.*
+
 @AndroidEntryPoint
 class HospitalActivity : AppCompatActivity() {
 
@@ -52,10 +52,20 @@ class HospitalActivity : AppCompatActivity() {
 //
 //        }
     }
+    private var doubleBackToExitPressedOnce = false
 
     override fun onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START)
+
+            if (doubleBackToExitPressedOnce) {
+                super.onBackPressed()
+            }
+
+            this.doubleBackToExitPressedOnce = true
+            makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show()
+
+            Handler().postDelayed(Runnable { doubleBackToExitPressedOnce = false }, 2000)
         } else {
             super.onBackPressed()
         }
@@ -69,4 +79,10 @@ class HospitalActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         return NavigationUI.navigateUp(navController, drawerLayout)
     }
+
+
+
+
+
+
 }

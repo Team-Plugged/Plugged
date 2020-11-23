@@ -1,6 +1,7 @@
 package com.plugged.viewmodel
 
 import androidx.hilt.lifecycle.ViewModelInject
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,7 +11,6 @@ import com.plugged.models.LoginResponse
 import com.plugged.models.RegPatient
 import com.plugged.models.Reg_PatientResponse
 import com.plugged.repository.PluggedRepository
-import com.plugged.ui.RegisterPatient
 import com.plugged.utils.NetWorkHelper
 import com.plugged.utils.Resource
 import kotlinx.coroutines.launch
@@ -18,13 +18,16 @@ import java.io.IOException
 
 class PluggedViewModel @ViewModelInject constructor(
     private val repository: PluggedRepository,
-    private val networkHelper: NetWorkHelper
+    private val networkHelper: NetWorkHelper,
+    apiHelper: ApiHelper
 ) : ViewModel() {
 
     val loginResponse: MutableLiveData<Resource<LoginResponse>> = MutableLiveData()
     var login_data:LoginResponse?=null
     val registerPatientResponse: MutableLiveData<Resource<Reg_PatientResponse>> = MutableLiveData()
     var registerPatient_data:Reg_PatientResponse?=null
+    val patientProfile:MutableLiveData<LoginResponse> = MutableLiveData()
+    var patient_data: LiveData<LoginResponse> = MutableLiveData()
 
 
     //LOgin Patient
@@ -107,6 +110,19 @@ class PluggedViewModel @ViewModelInject constructor(
         register_patient(patient)
 
     }
+
+
+
+    fun savePatient(patient: LoginResponse) = viewModelScope.launch {
+        repository.insert(patient)
+    }
+
+    fun deleteNews(patient: LoginResponse) = viewModelScope.launch {
+
+        repository.deletePatient(patient)
+    }
+
+    fun getPatient() = repository.getPatient()
 
 
 

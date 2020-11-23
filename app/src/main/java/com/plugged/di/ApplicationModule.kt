@@ -1,13 +1,17 @@
 package com.plugged.di
 
+import android.content.Context
+import androidx.room.Room
 import com.plugged.api.ApiHelper
 import com.plugged.api.ApiHelperImplementation
 import com.plugged.api.PluggedApi
+import com.plugged.db.PatientDb
 import com.plugged.utils.Constants.Companion.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -19,6 +23,22 @@ import javax.inject.Singleton
 @Module
 @InstallIn(ApplicationComponent::class)
 class ApplicationModule {
+
+
+
+    @Provides
+    @Singleton
+    fun provideArtcleDB(@ApplicationContext context: Context) = Room.databaseBuilder(
+        context.applicationContext,
+        PatientDb::class.java,
+        "patient_db.db"
+    ).build()
+
+
+    @Provides
+    @Singleton
+    fun provideArticleDAO(patientDb: PatientDb) = patientDb.getPatientDao()
+
 
     @Provides
     @Singleton

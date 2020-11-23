@@ -1,4 +1,4 @@
-package com.plugged.hospital
+package com.plugged.ui.hospital
 
 import android.app.Activity
 import android.content.Intent
@@ -203,6 +203,7 @@ class AddPatientFragment : Fragment() {
             )
             Log.d(TAG, Patient.toString())
             viewModel.RegisterPatient(Patient)
+            viewModel.getPatient()
 
             viewModel.registerPatientResponse.observe(viewLifecycleOwner, Observer { response ->
 

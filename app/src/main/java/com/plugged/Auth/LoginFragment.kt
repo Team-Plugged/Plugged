@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
-import com.plugged.utils.Constants.Companion.TAG
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
@@ -14,28 +13,25 @@ import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import com.plugged.MyPreferences
 import com.plugged.R
-import com.plugged.home.HospitalActivity
+import com.plugged.ui.home.PatientActivity
 import com.plugged.models.Login
+import com.plugged.ui.home.HospitalActivity
 import com.plugged.utils.Constants
 import com.plugged.utils.Resource
 import com.plugged.viewmodel.PluggedViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_add_patient.*
-import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.fragment_login.edit_email
 import kotlinx.android.synthetic.main.fragment_login.edit_password
 import kotlinx.android.synthetic.main.fragment_login.view.*
-import kotlinx.android.synthetic.main.fragment_login.view.edit_email
 
 @AndroidEntryPoint
 class LoginFragment : DialogFragment() {
     private val viewModel: PluggedViewModel by viewModels()
 
     companion object {
-
         const val TAG = "Login"
-
         private const val KEY_TITLE = "KEY_TITLE"
         private const val KEY_SUBTITLE = "KEY_SUBTITLE"
 
@@ -93,6 +89,9 @@ class LoginFragment : DialogFragment() {
 
         view.btn_login.setOnClickListener {
 
+            startActivity(Intent(activity,HospitalActivity::class.java))
+
+
             if(edit_email.text.isNullOrEmpty())
             {
                 edit_email.error = "Please input your email"
@@ -112,7 +111,18 @@ class LoginFragment : DialogFragment() {
             val Login = Login(email,password)
             Log.d(Constants.TAG,Login.toString())
 
-            viewModel.LoginPatient(Login)
+            if (user == "Patient")
+            {
+                viewModel.LoginPatient(Login)
+
+            }
+
+            else{
+                Log.d(TAG,"Hospital Selected")
+                MyPreferences(activity).is_staff = true
+                MyPreferences(activity).logged_in = true
+            }
+
 
             viewModel.loginResponse.observe(viewLifecycleOwner, Observer {response->
 
@@ -128,7 +138,12 @@ class LoginFragment : DialogFragment() {
                         progress_bar.visibility = View.INVISIBLE
                        response.data?.let {Patient_Data->
 
+                           viewModel.savePatient(Patient_Data)
+                            MyPreferences(activity).is_staff = false
+                           MyPreferences(activity).logged_in = true
                            Log.d(TAG,Patient_Data.toString())
+                           startActivity(Intent(activity,PatientActivity::class.java))
+
 
 
                        }
@@ -148,7 +163,6 @@ class LoginFragment : DialogFragment() {
 
             })
 
-//            startActivity(Intent(activity,HospitalActivity::class.java))
 
         }
 

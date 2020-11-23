@@ -1,7 +1,14 @@
 package com.plugged.models
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+
+@Entity(tableName = "patient"
+)
 data class LoginResponse(
     val _id: String,
+    @PrimaryKey(autoGenerate = true)
     val age: Int,
     val email: String,
     val firstname: String,

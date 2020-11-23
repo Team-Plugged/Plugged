@@ -3,21 +3,26 @@
 
     <item
         android:id="@+id/dashBoardFragment"
+        android:icon="@drawable/dashboard"
         android:title="Dashboard"/>
 
     <item
         android:id="@+id/addPatientFragment"
         android:enabled="true"
+        android:icon="@drawable/add_patient"
         android:title="Add Patient"/>
     <item
         android:id="@+id/addRecordFragment"
+        android:icon="@drawable/add_record"
         android:title="Add Record"/>
     <item
         android:id="@+id/searchFragment"
+        android:icon="@drawable/search"
         android:title="Search Patient"/>
 
     <item
-        android:id="@+id/logout"
+        android:id="@+id/logOutFragment"
+        android:icon="@drawable/logout"
         android:title="Log Out"/>
 
 </menu>

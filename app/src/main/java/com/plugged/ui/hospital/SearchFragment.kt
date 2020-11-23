@@ -1,4 +1,4 @@
-package com.plugged.hospital
+package com.plugged.ui.hospital
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.plugged.R
 
-class DashBoardFragment : Fragment() {
+class SearchFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,7 +19,7 @@ class DashBoardFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_dash_board, container, false)
+        return inflater.inflate(R.layout.fragment_search, container, false)
     }
 
 }

@@ -1,4 +1,4 @@
-package com.plugged.hospital
+package com.plugged.ui.hospital
 
 import android.os.Bundle
 import android.view.LayoutInflater

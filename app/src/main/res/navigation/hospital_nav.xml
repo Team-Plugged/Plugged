@@ -7,22 +7,27 @@
 
     <fragment
         android:id="@+id/addPatientFragment"
-        android:name="com.plugged.hospital.AddPatientFragment"
+        android:name="com.plugged.ui.hospital.AddPatientFragment"
         android:label="fragment_add_patient"
         tools:layout="@layout/fragment_add_patient" />
     <fragment
         android:id="@+id/addRecordFragment"
-        android:name="com.plugged.hospital.AddRecordFragment"
+        android:name="com.plugged.ui.hospital.AddRecordFragment"
         android:label="fragment_add_record"
         tools:layout="@layout/fragment_add_record" />
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.plugged.hospital.SearchFragment"
+        android:name="com.plugged.ui.hospital.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" />
     <fragment
         android:id="@+id/dashBoardFragment"
-        android:name="com.plugged.hospital.DashBoardFragment"
+        android:name="com.plugged.ui.hospital.DashBoardFragment"
         android:label="fragment_dash_board"
         tools:layout="@layout/fragment_dash_board" />
+    <fragment
+        android:id="@+id/logOutFragment"
+        android:name="com.plugged.Auth.LogOutFragment"
+        android:label="fragment_log_out"
+        tools:layout="@layout/fragment_log_out" />
 </navigation>

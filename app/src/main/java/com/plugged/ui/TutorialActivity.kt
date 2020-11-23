@@ -32,13 +32,13 @@ class TutorialActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.mission -> {
+//            R.id.mission -> {
 //                LoginFragment.newInstance().show(supportFragmentManager, LoginFragment.TAG)
-                RegisterPatient.newInstance()
-                    .show(supportFragmentManager, RegisterPatient.TAG)
-
-                true
-            }
+//                RegisterPatient.newInstance()
+//                    .show(supportFragmentManager, RegisterPatient.TAG)
+//
+//                true
+//            }
             R.id.auth -> {
                 LoginFragment.newInstance().show(supportFragmentManager, LoginFragment.TAG)
 

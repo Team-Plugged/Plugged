@@ -13,8 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".home.HospitalActivity"></activity>
-        <activity android:name=".home.PatientActivity" />
+        <activity android:name="com.plugged.ui.home.HospitalActivity"></activity>
+        <activity android:name="com.plugged.ui.home.PatientActivity" />
         <activity android:name=".ui.TutorialActivity" />
         <activity android:name=".Auth.AuthActivity" />
         <activity android:name=".MainActivity">

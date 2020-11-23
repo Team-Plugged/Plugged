@@ -7,12 +7,17 @@
 
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.plugged.patients.ProfileFragment"
+        android:name="com.plugged.ui.patients.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/recordsFragment"
-        android:name="com.plugged.patients.RecordsFragment"
+        android:name="com.plugged.ui.patients.RecordsFragment"
         android:label="fragment_records"
         tools:layout="@layout/fragment_records" />
+    <fragment
+        android:id="@+id/logOutFragment2"
+        android:name="com.plugged.Auth.LogOutFragment"
+        android:label="fragment_log_out"
+        tools:layout="@layout/fragment_log_out" />
 </navigation>
