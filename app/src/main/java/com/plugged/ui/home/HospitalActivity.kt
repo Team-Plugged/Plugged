@@ -10,11 +10,13 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 import com.plugged.R
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.hospital_content.*
 
 @AndroidEntryPoint
 class HospitalActivity : AppCompatActivity() {
@@ -46,11 +48,13 @@ class HospitalActivity : AppCompatActivity() {
 
         setupDrawerLayout()
 
-//        fab.setOnClickListener {
-//
-//            findNavController().navigate(R.id.addPatientFragment)
-//
-//        }
+         val logOut = navView.menu.findItem(R.id.logOut)
+        logOut.setOnMenuItemClickListener {
+
+            this.finishAffinity()
+            return@setOnMenuItemClickListener true
+        }
+
     }
     private var doubleBackToExitPressedOnce = false
 

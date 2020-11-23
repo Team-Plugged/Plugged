@@ -11,7 +11,7 @@
         android:icon="@drawable/patient_record"
         android:title="Records"/>
     <item
-        android:id="@+id/logOutFragment2"
+        android:id="@+id/logOut"
         android:icon="@drawable/logout"
         android:title="Log Out"/>
 

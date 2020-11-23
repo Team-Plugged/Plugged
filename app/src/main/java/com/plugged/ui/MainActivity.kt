@@ -1,10 +1,11 @@
-package com.plugged
+package com.plugged.ui
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.plugged.ui.TutorialActivity
+import com.plugged.R
 import com.plugged.ui.home.HospitalActivity
+import com.plugged.utils.MyPreferences
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 

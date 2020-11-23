@@ -5,8 +5,6 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.plugged.Auth.LoginFragment
-import com.plugged.Auth.RegistrationFragment
-import com.plugged.ContactUsFragment
 import com.plugged.R
 import dagger.hilt.android.AndroidEntryPoint
 

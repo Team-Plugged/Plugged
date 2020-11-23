@@ -21,7 +21,7 @@
         android:title="Search Patient"/>
 
     <item
-        android:id="@+id/logOutFragment"
+        android:id="@+id/logOut"
         android:icon="@drawable/logout"
         android:title="Log Out"/>
 

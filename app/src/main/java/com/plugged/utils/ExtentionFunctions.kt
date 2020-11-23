@@ -1,4 +1,4 @@
-package com.plugged
+package com.plugged.utils
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter

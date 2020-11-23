@@ -1,5 +1,4 @@
 package com.plugged.Auth
-
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -13,7 +12,7 @@ import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import com.plugged.MyPreferences
+import com.plugged.utils.MyPreferences
 import com.plugged.R
 import com.plugged.ui.home.PatientActivity
 import com.plugged.models.Login

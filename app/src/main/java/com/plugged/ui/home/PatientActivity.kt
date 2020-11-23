@@ -8,6 +8,7 @@ import androidx.core.view.GravityCompat
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.navigation.NavigationView
 import com.plugged.R
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_patient.*
@@ -15,6 +16,7 @@ import kotlinx.android.synthetic.main.activity_patient.*
 class PatientActivity : AppCompatActivity() {
 
     lateinit var toolbar: Toolbar
+    lateinit var navView: NavigationView
 
 
 
@@ -28,6 +30,7 @@ class PatientActivity : AppCompatActivity() {
 
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
+        navView = findViewById(R.id.nav_view)
 
         val toggle = ActionBarDrawerToggle(
             this, drawer_layout, toolbar, 0, 0
@@ -36,6 +39,13 @@ class PatientActivity : AppCompatActivity() {
         toggle.syncState()
 
         setupDrawerLayout()
+
+        val logOut = navView.menu.findItem(R.id.logOut)
+        logOut.setOnMenuItemClickListener {
+
+            this.finishAffinity()
+            return@setOnMenuItemClickListener true
+        }
 
 
     }

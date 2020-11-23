@@ -17,7 +17,7 @@
         <activity android:name="com.plugged.ui.home.PatientActivity" />
         <activity android:name=".ui.TutorialActivity" />
         <activity android:name=".Auth.AuthActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

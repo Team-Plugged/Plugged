@@ -1,4 +1,4 @@
-package com.plugged
+package com.plugged.utils
 
 import android.content.Context
 import androidx.preference.PreferenceManager
