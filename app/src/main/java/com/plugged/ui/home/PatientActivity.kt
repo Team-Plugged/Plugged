@@ -10,6 +10,7 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 import com.plugged.R
+import com.plugged.utils.MyPreferences
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_patient.*
 @AndroidEntryPoint
@@ -42,7 +43,8 @@ class PatientActivity : AppCompatActivity() {
 
         val logOut = navView.menu.findItem(R.id.logOut)
         logOut.setOnMenuItemClickListener {
-
+            MyPreferences(this).is_staff = false
+            MyPreferences(this).logged_in = false
             this.finishAffinity()
             return@setOnMenuItemClickListener true
         }

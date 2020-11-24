@@ -2,6 +2,7 @@ package com.plugged.ui.patients
 
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.plugged.R
 import com.plugged.databinding.FragmentProfileBinding
+import com.plugged.utils.Constants.Companion.TAG
 import com.plugged.viewmodel.PluggedViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -36,6 +38,8 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getPatient().observe(viewLifecycleOwner, Observer { patient ->
+
+            Log.d(TAG,"pATIENT pROFILE"+patient.toString())
 
             binding.patient = patient
 

@@ -12,13 +12,16 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.plugged.R
 import com.plugged.models.RegisterHospital
+import com.plugged.ui.home.HospitalActivity
 import com.plugged.ui.home.PatientActivity
 import com.plugged.utils.MyPreferences
 import com.plugged.utils.Resource
 import com.plugged.viewmodel.PluggedViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_registration.*
 import kotlinx.android.synthetic.main.fragment_registration.view.*
 
+@AndroidEntryPoint
 class RegistrationFragment : DialogFragment() {
     private val viewModel: PluggedViewModel by viewModels()
 
@@ -96,7 +99,7 @@ class RegistrationFragment : DialogFragment() {
                             MyPreferences(activity).is_staff = true
                             MyPreferences(activity).logged_in = true
                             Log.d(TAG,staff_data.toString())
-                            startActivity(Intent(activity, PatientActivity::class.java))
+                            startActivity(Intent(activity, HospitalActivity::class.java))
 
 
 

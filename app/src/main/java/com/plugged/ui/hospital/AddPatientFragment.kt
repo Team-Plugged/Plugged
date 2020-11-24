@@ -22,6 +22,7 @@ import com.plugged.viewmodel.PluggedViewModel
 import com.tuyenmonkey.mkloader.MKLoader
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_add_patient.*
+import kotlinx.coroutines.delay
 
 private const val REQUEST_CODE_IMAGE_PICK = 100
 
@@ -219,8 +220,20 @@ class AddPatientFragment : Fragment() {
 
                         response?.data.let {
                             Log.d(TAG, it.toString())
-                            successDialog()
+
                         }
+
+                        val mDialogView = LayoutInflater.from(activity).inflate(R.layout.success_layout, null)
+                        //AlertDialogBuilder
+                        val mBuilder = activity?.let {
+                            AlertDialog.Builder(it)
+                                .setView(mDialogView)
+                        }
+
+                        //show dialog
+                        val mAlertDialog = mBuilder?.show()
+//                        delay(200L)
+//                        mAlertDialog?.dismiss()
 
                     }
 

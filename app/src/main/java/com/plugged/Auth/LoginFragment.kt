@@ -88,7 +88,7 @@ class LoginFragment : DialogFragment() {
 
         view.btn_create.setOnClickListener {
 
-            startActivity(Intent(activity,HospitalActivity::class.java))
+//            startActivity(Intent(activity,HospitalActivity::class.java))
 
 
             if(edit_email.text.isNullOrEmpty())
@@ -108,7 +108,6 @@ class LoginFragment : DialogFragment() {
             val password = edit_password.text.toString()
 
             val Login = Login(email,password)
-            Log.d(Constants.TAG,Login.toString())
 
             if (user == "Patient")
             {
@@ -117,7 +116,8 @@ class LoginFragment : DialogFragment() {
             }
 
             else{
-                Log.d(TAG,"Hospital Selected")
+                Log.d(Constants.TAG,"Hospital Selected")
+
 
                 viewModel.LoginHospital(Login)
 
