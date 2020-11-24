@@ -101,7 +101,7 @@
         app:layout_constraintTop_toBottomOf="@+id/edit_password" />
 
     <Button
-        android:id="@+id/btn_login"
+        android:id="@+id/btn_create"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginTop="32dp"
@@ -121,7 +121,7 @@
         android:layout_marginTop="8dp"
         android:text="Forgot your password?"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/btn_login" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_create" />
 
     <com.tuyenmonkey.mkloader.MKLoader
         android:id="@+id/progressBar"

@@ -86,7 +86,7 @@ class LoginFragment : DialogFragment() {
 
         }
 
-        view.btn_login.setOnClickListener {
+        view.btn_create.setOnClickListener {
 
             startActivity(Intent(activity,HospitalActivity::class.java))
 
@@ -118,8 +118,9 @@ class LoginFragment : DialogFragment() {
 
             else{
                 Log.d(TAG,"Hospital Selected")
-                MyPreferences(activity).is_staff = true
-                MyPreferences(activity).logged_in = true
+
+                viewModel.LoginHospital(Login)
+
             }
 
 
@@ -146,6 +147,44 @@ class LoginFragment : DialogFragment() {
 
 
                        }
+
+                    }
+
+                    is Resource.Error -> {
+                        progress_bar.visibility = View.INVISIBLE
+
+                        response.message?.let {
+                            Toast.makeText(activity, "Error Occured: $it", Toast.LENGTH_SHORT)
+                                .show()
+                        }
+                    }
+                }
+
+
+            })
+
+            viewModel.loginHospital.observe(viewLifecycleOwner, Observer {response->
+
+                when(response)
+                {
+
+                    is Resource.Loading -> {
+
+                        progress_bar.visibility=View.VISIBLE
+                    }
+
+                    is Resource.Success->{
+                        progress_bar.visibility = View.INVISIBLE
+                        response.data?.let {staff_data->
+
+                            MyPreferences(activity).is_staff = true
+                            MyPreferences(activity).logged_in = true
+                            Log.d(TAG,staff_data.toString())
+                            startActivity(Intent(activity,HospitalActivity::class.java))
+
+
+
+                        }
 
                     }
 

@@ -2,10 +2,7 @@ package com.plugged.repository
 
 import androidx.lifecycle.LiveData
 import com.plugged.api.ApiHelper
-import com.plugged.models.Login
-import com.plugged.models.LoginResponse
-import com.plugged.models.RegPatient
-import com.plugged.models.Reg_PatientResponse
+import com.plugged.models.*
 import retrofit2.Response
 import javax.inject.Inject
 
@@ -17,6 +14,10 @@ class PluggedRepository@Inject constructor(private val apiHelper: ApiHelper)  {
     suspend fun insert(patient:LoginResponse)=apiHelper.insert(patient)
     fun getPatient()=apiHelper.getPatient()
     suspend fun deletePatient(patient: LoginResponse)=apiHelper.deletePatient(patient)
+
+    suspend fun register_hospital(register_hospital: RegisterHospital)=apiHelper.register_hospital(register_hospital)
+
+    suspend fun login_hospital(login_hospital: Login)=apiHelper.login_hospital(login_hospital)
 
 
 }

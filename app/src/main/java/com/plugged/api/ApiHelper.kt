@@ -2,11 +2,10 @@ package com.plugged.api
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.plugged.models.Login
-import com.plugged.models.LoginResponse
-import com.plugged.models.RegPatient
-import com.plugged.models.Reg_PatientResponse
+import com.plugged.models.*
 import retrofit2.Response
+import retrofit2.http.Body
+import retrofit2.http.POST
 
 interface ApiHelper {
 
@@ -16,4 +15,8 @@ interface ApiHelper {
     suspend fun insert(patient:LoginResponse):Long
     fun getPatient():LiveData<LoginResponse>
     suspend fun deletePatient(patient: LoginResponse)
+
+    suspend fun register_hospital(register_hospital: RegisterHospital): Response<RegisterHospitalResponse>
+
+    suspend fun login_hospital(login_hospital: Login): Response<LoginHospitalResponse>
 }

@@ -4,10 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.plugged.db.PatientDao
 import com.plugged.db.PatientDb
-import com.plugged.models.Login
-import com.plugged.models.LoginResponse
-import com.plugged.models.RegPatient
-import com.plugged.models.Reg_PatientResponse
+import com.plugged.models.*
 import retrofit2.Response
 import javax.inject.Inject
 
@@ -31,5 +28,13 @@ class ApiHelperImplementation @Inject constructor(private val api: PluggedApi, v
 
     override suspend fun deletePatient(patient: LoginResponse) {
         return db.deletePatient(patient)
+    }
+
+    override suspend fun register_hospital(register_hospital: RegisterHospital): Response<RegisterHospitalResponse> {
+        return api.register_hospital(register_hospital)
+    }
+
+    override suspend fun login_hospital(login_hospital: Login): Response<LoginHospitalResponse> {
+       return  api.login_hospital(login_hospital)
     }
 }

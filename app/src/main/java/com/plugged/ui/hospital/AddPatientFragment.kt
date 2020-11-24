@@ -22,7 +22,6 @@ import com.plugged.viewmodel.PluggedViewModel
 import com.tuyenmonkey.mkloader.MKLoader
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_add_patient.*
-import kotlinx.coroutines.delay
 
 private const val REQUEST_CODE_IMAGE_PICK = 100
 
@@ -144,7 +143,7 @@ class AddPatientFragment : Fragment() {
         }
 
 
-        btn_login.setOnClickListener {
+        btn_create.setOnClickListener {
 
             if (edit_firstName.text.isNullOrEmpty()) {
                 edit_firstName.error = "First Name is Required"
