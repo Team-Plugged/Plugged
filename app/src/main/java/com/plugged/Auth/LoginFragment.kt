@@ -1,4 +1,5 @@
 package com.plugged.Auth
+
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -12,17 +13,15 @@ import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import com.plugged.utils.MyPreferences
 import com.plugged.R
-import com.plugged.ui.home.PatientActivity
 import com.plugged.models.Login
 import com.plugged.ui.home.HospitalActivity
-import com.plugged.utils.Constants
+import com.plugged.ui.home.PatientActivity
+import com.plugged.utils.MyPreferences
 import com.plugged.utils.Resource
 import com.plugged.viewmodel.PluggedViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_login.edit_email
-import kotlinx.android.synthetic.main.fragment_login.edit_password
+import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.fragment_login.view.*
 
 @AndroidEntryPoint
@@ -60,7 +59,7 @@ class LoginFragment : DialogFragment() {
         val progress_bar = view.progressBar
         var user = "Patient"
         val user_type = resources.getStringArray(R.array.user_type)
-        if (spinner != null){
+        if (spinner != null) {
             val adapter =
                 activity?.let { ArrayAdapter(it, android.R.layout.simple_spinner_item, user_type) }
             if (adapter != null) {
@@ -80,7 +79,7 @@ class LoginFragment : DialogFragment() {
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>) {
-                   user = "Patient"
+                    user = "Patient"
                 }
             }
 
@@ -91,15 +90,13 @@ class LoginFragment : DialogFragment() {
 //            startActivity(Intent(activity,HospitalActivity::class.java))
 
 
-            if(edit_email.text.isNullOrEmpty())
-            {
+            if (edit_email.text.isNullOrEmpty()) {
                 edit_email.error = "Please input your email"
                 edit_email.requestFocus()
                 return@setOnClickListener
             }
 
-            if (edit_password.text.isNullOrEmpty())
-            {
+            if (edit_password.text.isNullOrEmpty()) {
                 edit_password.error = "Please input your Password"
                 edit_password.requestFocus()
                 return@setOnClickListener
@@ -107,46 +104,38 @@ class LoginFragment : DialogFragment() {
             val email = edit_email.text.toString()
             val password = edit_password.text.toString()
 
-            val Login = Login(email,password)
+            val Login = Login(email, password)
 
-            if (user == "Patient")
-            {
+            if (user == "Patient") {
                 viewModel.LoginPatient(Login)
-
-            }
-
-            else{
-                Log.d(Constants.TAG,"Hospital Selected")
-
-
-                viewModel.LoginHospital(Login)
+            } else {
+                startActivity(Intent(activity, HospitalActivity::class.java))
+//                viewModel.LoginHospital(Login)
 
             }
 
 
-            viewModel.loginResponse.observe(viewLifecycleOwner, Observer {response->
+            viewModel.loginResponse.observe(viewLifecycleOwner, Observer { response ->
 
-                when(response)
-                {
+                when (response) {
 
                     is Resource.Loading -> {
 
-                        progress_bar.visibility=View.VISIBLE
+                        progress_bar.visibility = View.VISIBLE
                     }
 
-                    is Resource.Success->{
+                    is Resource.Success -> {
                         progress_bar.visibility = View.INVISIBLE
-                       response.data?.let {Patient_Data->
+                        response.data?.let { Patient_Data ->
 
-                           viewModel.savePatient(Patient_Data)
+                            viewModel.savePatient(Patient_Data)
                             MyPreferences(activity).is_staff = false
-                           MyPreferences(activity).logged_in = true
-                           Log.d(TAG,Patient_Data.toString())
-                           startActivity(Intent(activity,PatientActivity::class.java))
+                            MyPreferences(activity).logged_in = true
+                            Log.d(TAG, Patient_Data.toString())
+                            startActivity(Intent(activity, PatientActivity::class.java))
 
 
-
-                       }
+                        }
 
                     }
 
@@ -163,25 +152,23 @@ class LoginFragment : DialogFragment() {
 
             })
 
-            viewModel.loginHospital.observe(viewLifecycleOwner, Observer {response->
+            viewModel.loginHospital.observe(viewLifecycleOwner, Observer { response ->
 
-                when(response)
-                {
+                when (response) {
 
                     is Resource.Loading -> {
 
-                        progress_bar.visibility=View.VISIBLE
+                        progress_bar.visibility = View.VISIBLE
                     }
 
-                    is Resource.Success->{
+                    is Resource.Success -> {
                         progress_bar.visibility = View.INVISIBLE
-                        response.data?.let {staff_data->
+                        response.data?.let { staff_data ->
 
                             MyPreferences(activity).is_staff = true
                             MyPreferences(activity).logged_in = true
-                            Log.d(TAG,staff_data.toString())
-                            startActivity(Intent(activity,HospitalActivity::class.java))
-
+                            Log.d(TAG, staff_data.toString())
+                            startActivity(Intent(activity, HospitalActivity::class.java))
 
 
                         }
@@ -207,7 +194,8 @@ class LoginFragment : DialogFragment() {
         view.register.setOnClickListener {
             activity?.supportFragmentManager?.let { it1 ->
                 RegistrationFragment.newInstance().show(
-                    it1, RegistrationFragment.TAG)
+                    it1, RegistrationFragment.TAG
+                )
             }
             dismiss()
 

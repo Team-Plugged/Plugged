@@ -14,9 +14,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.plugged.R
 import com.plugged.databinding.FragmentProfileBinding
+import com.plugged.models.LoginResponse
 import com.plugged.utils.Constants.Companion.TAG
 import com.plugged.viewmodel.PluggedViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.profile_layout.*
 
 @AndroidEntryPoint
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
@@ -39,11 +41,26 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getPatient().observe(viewLifecycleOwner, Observer { patient ->
 
-            Log.d(TAG,"pATIENT pROFILE"+patient.toString())
+            Log.d(TAG,"Patient Profile"+patient.toString())
 
-            binding.patient = patient
+            if (patient  !=null)
+            {
+                setData(patient)
+            }
 
         })
+    }
+
+    fun setData(patient:LoginResponse)
+    {
+        gender.text = patient.gender
+        age.text = patient.age.toString()
+        weight.text =patient.weight.toString()
+        height.text = patient.height.toString()
+        f_name.text = patient.firstname
+        l_name.text = patient.lastname
+        email.text = patient.email
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,8 +76,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             Toast.makeText(activity, "Please Click BACK again to exit", Toast.LENGTH_SHORT).show()
 
             Handler().postDelayed(Runnable { doubleBackToExitPressedOnce = false }, 2000)}
-
-
 
     }
 

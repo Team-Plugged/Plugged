@@ -13,7 +13,7 @@ class PluggedRepository@Inject constructor(private val apiHelper: ApiHelper)  {
 
     suspend fun insert(patient:LoginResponse)=apiHelper.insert(patient)
     fun getPatient()=apiHelper.getPatient()
-    suspend fun deletePatient(patient: LoginResponse)=apiHelper.deletePatient(patient)
+    suspend fun deletePatient()=apiHelper.deletePatient()
 
     suspend fun register_hospital(register_hospital: RegisterHospital)=apiHelper.register_hospital(register_hospital)
 

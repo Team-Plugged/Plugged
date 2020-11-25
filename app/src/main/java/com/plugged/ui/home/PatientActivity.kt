@@ -1,6 +1,7 @@
 package com.plugged.ui.home
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -11,15 +12,15 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 import com.plugged.R
 import com.plugged.utils.MyPreferences
+import com.plugged.viewmodel.PluggedViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_patient.*
 @AndroidEntryPoint
 class PatientActivity : AppCompatActivity() {
+    private val viewModel: PluggedViewModel by viewModels()
 
     lateinit var toolbar: Toolbar
     lateinit var navView: NavigationView
-
-
 
     private val navController by lazy {
         Navigation.findNavController(this, R.id.nav_host_fragment)
@@ -43,6 +44,8 @@ class PatientActivity : AppCompatActivity() {
 
         val logOut = navView.menu.findItem(R.id.logOut)
         logOut.setOnMenuItemClickListener {
+
+            viewModel.deletePatient()
             MyPreferences(this).is_staff = false
             MyPreferences(this).logged_in = false
             this.finishAffinity()

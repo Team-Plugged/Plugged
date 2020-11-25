@@ -26,8 +26,8 @@ class ApiHelperImplementation @Inject constructor(private val api: PluggedApi, v
         return db.getPatient()
     }
 
-    override suspend fun deletePatient(patient: LoginResponse) {
-        return db.deletePatient(patient)
+    override suspend fun deletePatient() {
+        return db.deletePatient()
     }
 
     override suspend fun register_hospital(register_hospital: RegisterHospital): Response<RegisterHospitalResponse> {

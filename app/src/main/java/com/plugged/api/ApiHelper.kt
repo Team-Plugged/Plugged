@@ -14,7 +14,7 @@ interface ApiHelper {
 
     suspend fun insert(patient:LoginResponse):Long
     fun getPatient():LiveData<LoginResponse>
-    suspend fun deletePatient(patient: LoginResponse)
+    suspend fun deletePatient()
 
     suspend fun register_hospital(register_hospital: RegisterHospital): Response<RegisterHospitalResponse>
 

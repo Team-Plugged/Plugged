@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.plugged.R
 import com.plugged.ui.home.HospitalActivity
+import com.plugged.ui.home.PatientActivity
 import com.plugged.utils.MyPreferences
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
@@ -15,6 +16,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //Check Whether a user Logged in
         when(MyPreferences(this).logged_in)
         {
             true->{
@@ -23,7 +25,7 @@ class MainActivity : AppCompatActivity() {
                      startActivity(Intent(this,HospitalActivity::class.java))
                  }
                 else{
-                     startActivity(Intent(this,HospitalActivity::class.java))
+                     startActivity(Intent(this,PatientActivity::class.java))
 
                  }
             }

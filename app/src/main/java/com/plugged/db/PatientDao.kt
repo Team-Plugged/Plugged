@@ -14,8 +14,8 @@ interface PatientDao {
     @Query("SELECT * FROM patient")
     fun getPatient(): LiveData<LoginResponse>
 
-    @Delete
-    suspend fun deletePatient(patient: LoginResponse)
+    @Query("DELETE FROM patient")
+    suspend fun deletePatient()
 
 
 

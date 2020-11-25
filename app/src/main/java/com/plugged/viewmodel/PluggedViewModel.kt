@@ -198,9 +198,9 @@ class PluggedViewModel @ViewModelInject constructor(
         repository.insert(patient)
     }
 
-    fun deleteNews(patient: LoginResponse) = viewModelScope.launch {
+    fun deletePatient() = viewModelScope.launch {
 
-        repository.deletePatient(patient)
+        repository.deletePatient()
     }
 
     fun getPatient() = repository.getPatient()
