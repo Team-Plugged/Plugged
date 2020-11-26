@@ -22,7 +22,8 @@ import com.plugged.viewmodel.PluggedViewModel
 import com.tuyenmonkey.mkloader.MKLoader
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_add_patient.*
-import kotlinx.coroutines.delay
+import java.io.FileNotFoundException
+import java.io.InputStream
 
 private const val REQUEST_CODE_IMAGE_PICK = 100
 
@@ -144,7 +145,7 @@ class AddPatientFragment : Fragment() {
         }
 
 
-        btn_create.setOnClickListener {
+        btn_add.setOnClickListener {
 
             if (edit_firstName.text.isNullOrEmpty()) {
                 edit_firstName.error = "First Name is Required"
@@ -207,6 +208,8 @@ class AddPatientFragment : Fragment() {
             viewModel.RegisterPatient(Patient)
             viewModel.getPatient()
 
+
+//            Observer for register Patient
             viewModel.registerPatientResponse.observe(viewLifecycleOwner, Observer { response ->
 
                 when (response) {
@@ -252,6 +255,52 @@ class AddPatientFragment : Fragment() {
 
             })
 
+//                Onserver for Image Upload
+            viewModel.uploadPic.observe(viewLifecycleOwner, Observer { response ->
+                when (response) {
+
+                    is Resource.Loading -> {
+
+                        progress_bar.visibility = View.VISIBLE
+                    }
+                    is Resource.Success -> {
+                        progress_bar.visibility = View.INVISIBLE
+
+                        response?.data.let {
+                            Log.d(TAG, it.toString())
+
+                        }
+
+                        val mDialogView = LayoutInflater.from(activity).inflate(R.layout.success_layout, null)
+                        //AlertDialogBuilder
+                        val mBuilder = activity?.let {
+                            AlertDialog.Builder(it)
+                                .setView(mDialogView)
+                        }
+
+                        //show dialog
+                        val mAlertDialog = mBuilder?.show()
+//                        delay(200L)
+//                        mAlertDialog?.dismiss()
+
+                    }
+
+                    is Resource.Error -> {
+                        progress_bar.visibility = View.INVISIBLE
+
+                        response.message?.let {
+                            Toast.makeText(activity, "Error Occured: $it", Toast.LENGTH_SHORT)
+                                .show()
+                        }
+                    }
+
+
+                }
+
+
+            })
+
+
         }
 
         image.setOnClickListener {
@@ -273,11 +322,25 @@ class AddPatientFragment : Fragment() {
         if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE_IMAGE_PICK) {
             data?.data?.let {
 
+                try {
+                    data?.let {
+                        val inputStream: InputStream? =
+                            context?.contentResolver?.openInputStream(it.data!!)
+                        inputStream?.let { stream ->
+
+                            viewModel.uploadPhoto(stream)
+                        }
+                    }
+                } catch (e: FileNotFoundException) {
+                    e.printStackTrace()
+
+                }
             }
         }
+
     }
 
-    private  fun successDialog() {
+    fun successDialog() {
         val mDialogView = LayoutInflater.from(activity).inflate(R.layout.success_layout, null)
         //AlertDialogBuilder
         val mBuilder = activity?.let {

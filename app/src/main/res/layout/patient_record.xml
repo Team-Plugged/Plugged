@@ -45,7 +45,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <TextView
-        android:id="@+id/symptoms"
+        android:id="@+id/edit_symptoms"
         android:layout_width="0dp"
         android:layout_height="94dp"
         android:layout_marginTop="16dp"
@@ -69,7 +69,7 @@
         android:layout_marginTop="16dp"
         android:text="Diagnosis"
         app:layout_constraintStart_toStartOf="@+id/guideline7"
-        app:layout_constraintTop_toBottomOf="@+id/symptoms" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_symptoms" />
 
     <TextView
         android:id="@+id/diagnosis"
@@ -79,7 +79,7 @@
         android:text="Typhoid and Malaria"
         app:layout_constraintEnd_toStartOf="@+id/guideline9"
         app:layout_constraintStart_toStartOf="@+id/guideline10"
-        app:layout_constraintTop_toBottomOf="@+id/symptoms" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_symptoms" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline10"
@@ -98,7 +98,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
     <TextView
-        android:id="@+id/prescription"
+        android:id="@+id/edit_prescription"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -123,7 +123,7 @@
         android:layout_marginTop="16dp"
         android:text="Dr Omolara Adeleke"
         app:layout_constraintStart_toStartOf="@+id/guideline10"
-        app:layout_constraintTop_toBottomOf="@+id/notes" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_notes" />
 
     <TextView
         android:id="@+id/textView17"
@@ -132,17 +132,17 @@
         android:layout_marginTop="16dp"
         android:text="Allergies"
         app:layout_constraintStart_toStartOf="@+id/guideline7"
-        app:layout_constraintTop_toBottomOf="@+id/prescription" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_prescription" />
 
     <TextView
-        android:id="@+id/allergies"
+        android:id="@+id/edit_allergies"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Allergies"
         app:layout_constraintEnd_toStartOf="@+id/guideline9"
         app:layout_constraintStart_toStartOf="@+id/guideline10"
-        app:layout_constraintTop_toBottomOf="@+id/prescription" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_prescription" />
 
     <TextView
         android:id="@+id/textView19"
@@ -151,14 +151,14 @@
         android:layout_marginTop="16dp"
         android:text="Notes"
         app:layout_constraintStart_toStartOf="@+id/guideline7"
-        app:layout_constraintTop_toBottomOf="@+id/allergies" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_allergies" />
 
     <TextView
-        android:id="@+id/notes"
+        android:id="@+id/edit_notes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="TextView"
         app:layout_constraintStart_toStartOf="@+id/guideline10"
-        app:layout_constraintTop_toBottomOf="@+id/allergies" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_allergies" />
 </androidx.constraintlayout.widget.ConstraintLayout>

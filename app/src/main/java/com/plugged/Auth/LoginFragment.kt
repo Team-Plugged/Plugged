@@ -85,7 +85,7 @@ class LoginFragment : DialogFragment() {
 
         }
 
-        view.btn_create.setOnClickListener {
+        view.btn_add.setOnClickListener {
 
 //            startActivity(Intent(activity,HospitalActivity::class.java))
 
@@ -107,10 +107,11 @@ class LoginFragment : DialogFragment() {
             val Login = Login(email, password)
 
             if (user == "Patient") {
+                view.btn_add.visibility = View.INVISIBLE
                 viewModel.LoginPatient(Login)
             } else {
-                startActivity(Intent(activity, HospitalActivity::class.java))
-//                viewModel.LoginHospital(Login)
+//                startActivity(Intent(activity, HospitalActivity::class.java))
+                viewModel.LoginHospital(Login)
 
             }
 
@@ -127,6 +128,7 @@ class LoginFragment : DialogFragment() {
                     is Resource.Success -> {
                         progress_bar.visibility = View.INVISIBLE
                         response.data?.let { Patient_Data ->
+                            view.btn_add.visibility = View.VISIBLE
 
                             viewModel.savePatient(Patient_Data)
                             MyPreferences(activity).is_staff = false
@@ -141,9 +143,9 @@ class LoginFragment : DialogFragment() {
 
                     is Resource.Error -> {
                         progress_bar.visibility = View.INVISIBLE
-
+                        view.btn_add.visibility = View.VISIBLE
                         response.message?.let {
-                            Toast.makeText(activity, "Error Occured: $it", Toast.LENGTH_SHORT)
+                            Toast.makeText(activity, "$it", Toast.LENGTH_SHORT)
                                 .show()
                         }
                     }
@@ -165,6 +167,7 @@ class LoginFragment : DialogFragment() {
                         progress_bar.visibility = View.INVISIBLE
                         response.data?.let { staff_data ->
 
+                            MyPreferences(activity).token = staff_data.token
                             MyPreferences(activity).is_staff = true
                             MyPreferences(activity).logged_in = true
                             Log.d(TAG, staff_data.toString())

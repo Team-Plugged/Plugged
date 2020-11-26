@@ -3,6 +3,7 @@ package com.plugged.repository
 import androidx.lifecycle.LiveData
 import com.plugged.api.ApiHelper
 import com.plugged.models.*
+import okhttp3.MultipartBody
 import retrofit2.Response
 import javax.inject.Inject
 
@@ -18,6 +19,12 @@ class PluggedRepository@Inject constructor(private val apiHelper: ApiHelper)  {
     suspend fun register_hospital(register_hospital: RegisterHospital)=apiHelper.register_hospital(register_hospital)
 
     suspend fun login_hospital(login_hospital: Login)=apiHelper.login_hospital(login_hospital)
+
+    suspend fun addRecord(token: String,addRecord: AddRecord)=apiHelper.addRecord(token,addRecord)
+
+
+    suspend fun uplodImage(image: MultipartBody.Part) = apiHelper.uplodImage(image)
+
 
 
 }

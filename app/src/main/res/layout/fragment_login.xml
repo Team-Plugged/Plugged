@@ -65,7 +65,7 @@
     <EditText
         android:id="@+id/edit_email"
         android:layout_width="0dp"
-        android:padding="8dp"
+        android:padding="@dimen/default_padding"
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/edit_text_bg"
@@ -79,7 +79,7 @@
     <EditText
         android:id="@+id/edit_password"
         android:layout_width="0dp"
-        android:padding="8dp"
+        android:padding="@dimen/default_padding"
         android:layout_height="50dp"
         android:background="@drawable/edit_text_bg"
         android:layout_marginTop="32dp"
@@ -101,7 +101,7 @@
         app:layout_constraintTop_toBottomOf="@+id/edit_password" />
 
     <Button
-        android:id="@+id/btn_create"
+        android:id="@+id/btn_add"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginTop="32dp"
@@ -121,17 +121,18 @@
         android:layout_marginTop="8dp"
         android:text="Forgot your password?"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/btn_create" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_add" />
 
     <com.tuyenmonkey.mkloader.MKLoader
         android:id="@+id/progressBar"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="@dimen/progressBar_width"
+        android:layout_height="@dimen/progressBar_height"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/edit_email"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="parent"
         app:mk_color="@color/colorPrimary"
         app:mk_type="ClassicSpinner" />
 

@@ -12,7 +12,14 @@ import com.plugged.repository.PluggedRepository
 import com.plugged.utils.NetWorkHelper
 import com.plugged.utils.Resource
 import kotlinx.coroutines.launch
+import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.IOException
+import java.io.InputStream
+
 
 class PluggedViewModel @ViewModelInject constructor(
     private val repository: PluggedRepository,
@@ -25,9 +32,13 @@ class PluggedViewModel @ViewModelInject constructor(
     var register_hospital__data:RegisterHospitalResponse?=null
     var login_hospital__data:LoginHospitalResponse?=null
     val registerPatientResponse: MutableLiveData<Resource<Reg_PatientResponse>> = MutableLiveData()
+    val addRecord: MutableLiveData<Resource<AddRecordResponse>> = MutableLiveData()
     var registerPatient_data:Reg_PatientResponse?=null
+    var upload_data:UploadImageResponse?=null
+    var record_data:AddRecordResponse?=null
     val patientProfile:MutableLiveData<LoginResponse> = MutableLiveData()
     var patient_data: LiveData<LoginResponse> = MutableLiveData()
+    val uploadPic:MutableLiveData<Resource<UploadImageResponse>> = MutableLiveData()
 
     var registerHospital:MutableLiveData<Resource<RegisterHospitalResponse>> = MutableLiveData()
     var loginHospital:MutableLiveData<Resource<LoginHospitalResponse>> = MutableLiveData()
@@ -111,7 +122,7 @@ class PluggedViewModel @ViewModelInject constructor(
         register_hospital(register_hospital)
     }
 
-    //LOgin Patient
+    //Login Patient
    private suspend fun login_patient(login: Login){
         loginResponse.postValue(Resource.Loading())
         try{
@@ -187,11 +198,84 @@ class PluggedViewModel @ViewModelInject constructor(
         login_patient(login)
     }
 
+    fun addPatientRecord(token:String,record: AddRecord) = viewModelScope.launch {
+        addRecord(token, record)
+    }
+
+    private suspend fun addRecord(token:String,record: AddRecord)
+    {
+
+        addRecord.postValue(Resource.Loading())
+        try{
+            if (networkHelper.isNetworkConnected())
+            {
+                val response = repository.addRecord(token,record)
+                if (response.isSuccessful)
+                {
+                    response.body()?.let {result->
+                        record_data = result
+
+                        addRecord.postValue(Resource.Success(record_data ?:result))
+
+                    }
+                }
+
+                else{
+                    addRecord.postValue( Resource.Error(response.message()))
+                }
+            }
+
+            else{
+                addRecord.postValue( Resource.Error("No Internet Connection"))
+
+            }
+        }
+
+        catch (t: Throwable) {
+            when (t) {
+                is IOException -> registerPatientResponse.postValue(Resource.Error("Network Error"))
+                else -> registerPatientResponse.postValue(Resource.Error("Unexpected Error"))
+            }
+        }
+
+    }
+
     fun RegisterPatient(patient: RegPatient) = viewModelScope.launch {
         register_patient(patient)
 
     }
 
+
+//    upload Photo
+
+    fun uploadPhoto(profile_pic: InputStream)
+    {
+        uploadPic.postValue(Resource.Loading())
+        viewModelScope.launch {
+            val image = MultipartBody.Part.createFormData(
+                "profile_pic", "myPic.jpg", profile_pic.readBytes()
+                    .toRequestBody(
+                        "image/*".toMediaTypeOrNull(),
+                        0
+                    )
+            )
+            try {
+                val response = repository.uplodImage(image)
+                response.body()?.let {result->
+                    upload_data = result
+                    uploadPic.postValue(Resource.Success(upload_data?:result))
+
+                }
+
+            } catch (t: Throwable) {
+                when (t) {
+                    is IOException -> uploadPic.postValue(Resource.Error(t.message.toString()))
+                    else -> uploadPic.postValue(Resource.Error("Conversion Error"))
+                }
+            }
+        }
+
+    }
 
 
     fun savePatient(patient: LoginResponse) = viewModelScope.launch {

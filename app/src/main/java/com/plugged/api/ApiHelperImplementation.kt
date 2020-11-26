@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.plugged.db.PatientDao
 import com.plugged.db.PatientDb
 import com.plugged.models.*
+import okhttp3.MultipartBody
 import retrofit2.Response
 import javax.inject.Inject
 
@@ -36,5 +37,13 @@ class ApiHelperImplementation @Inject constructor(private val api: PluggedApi, v
 
     override suspend fun login_hospital(login_hospital: Login): Response<LoginHospitalResponse> {
        return  api.login_hospital(login_hospital)
+    }
+
+    override suspend fun addRecord(token: String,addRecord: AddRecord): Response<AddRecordResponse> {
+        return  api.addRecord(token,addRecord)
+    }
+
+    override suspend fun uplodImage(image: MultipartBody.Part): Response<UploadImageResponse> {
+        return  api.uplodImage(image)
     }
 }

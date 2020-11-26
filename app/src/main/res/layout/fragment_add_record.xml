@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/symptoms"
+        android:id="@+id/edit_symptoms"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -34,7 +34,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <EditText
-        android:id="@+id/Diagnosis"
+        android:id="@+id/edit_diagnosis"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -44,10 +44,10 @@
         android:hint="Diagnosis"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/symptoms" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_symptoms" />
 
     <EditText
-        android:id="@+id/prescription"
+        android:id="@+id/edit_prescription"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -57,10 +57,10 @@
         android:hint="Prescription"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Diagnosis" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_diagnosis" />
 
     <EditText
-        android:id="@+id/allergies"
+        android:id="@+id/edit_allergies"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -70,10 +70,10 @@
         android:hint="Allergies"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/prescription" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_prescription" />
 
     <EditText
-        android:id="@+id/notes"
+        android:id="@+id/edit_notes"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -83,23 +83,23 @@
         android:hint="Notes"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/allergies" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_allergies" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName13"
+        android:id="@+id/edit_patientEmail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:hint="Patient Email"
+        android:inputType="textEmailAddress"
         android:padding="8dp"
-        android:hint="Doctor's Name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/notes" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_notes" />
 
     <Button
-        android:id="@+id/btn_create"
+        android:id="@+id/btn_add"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginTop="32dp"
@@ -110,16 +110,17 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName13" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_patientEmail" />
 
     <com.tuyenmonkey.mkloader.MKLoader
         android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/notes"
+        android:layout_width="@dimen/progressBar_width"
+        android:layout_height="@dimen/progressBar_height"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:mk_color="@color/colorPrimary"
         app:mk_type="ClassicSpinner" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,7 +13,6 @@ import androidx.lifecycle.Observer
 import com.plugged.R
 import com.plugged.models.RegisterHospital
 import com.plugged.ui.home.HospitalActivity
-import com.plugged.ui.home.PatientActivity
 import com.plugged.utils.MyPreferences
 import com.plugged.utils.Resource
 import com.plugged.viewmodel.PluggedViewModel
@@ -48,7 +47,7 @@ class RegistrationFragment : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        view.btn_create.setOnClickListener {
+        view.btn_add.setOnClickListener {
 
             if (edit_name.text.isNullOrEmpty())
             {
