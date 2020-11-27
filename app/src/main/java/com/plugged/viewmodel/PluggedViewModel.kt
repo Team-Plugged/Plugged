@@ -33,6 +33,8 @@ class PluggedViewModel @ViewModelInject constructor(
     var login_hospital__data:LoginHospitalResponse?=null
     val registerPatientResponse: MutableLiveData<Resource<Reg_PatientResponse>> = MutableLiveData()
     val addRecord: MutableLiveData<Resource<AddRecordResponse>> = MutableLiveData()
+    val searchRecord: MutableLiveData<Resource<SearchResponse>> = MutableLiveData()
+    var searchData:SearchResponse?=null
     var registerPatient_data:Reg_PatientResponse?=null
     var upload_data:UploadImageResponse?=null
     var record_data:AddRecordResponse?=null
@@ -111,6 +113,51 @@ class PluggedViewModel @ViewModelInject constructor(
                 else -> loginResponse.postValue(Resource.Error("Conversion Error"))
             }
         }
+    }
+
+    //Search Record takes  Patients Email as Body
+    private suspend fun searchRecord(query:SearchBody)
+    {
+
+        searchRecord.postValue(Resource.Loading())
+        try{
+            if (networkHelper.isNetworkConnected())
+            {
+                val response = repository.searchRecord(query)
+                if (response.isSuccessful)
+                {
+                    response.body()?.let {result->
+                        searchData = result
+
+                        searchRecord.postValue(Resource.Success(searchData ?:result))
+
+                    }
+                }
+                else{
+                    searchRecord.postValue( Resource.Error(response.message()))
+                }
+            }
+
+            else{
+                searchRecord.postValue( Resource.Error("No Internet Connection"))
+
+            }
+        }
+
+        catch (t: Throwable) {
+            when (t) {
+                is IOException -> searchRecord.postValue(Resource.Error("Network Error"))
+                else -> searchRecord.postValue(Resource.Error("Conversion Error"))
+            }
+        }
+
+
+
+
+    }
+
+    fun search(query: SearchBody)= viewModelScope.launch {
+        searchRecord(query)
     }
 
 

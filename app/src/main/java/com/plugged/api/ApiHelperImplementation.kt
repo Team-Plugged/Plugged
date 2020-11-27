@@ -46,4 +46,8 @@ class ApiHelperImplementation @Inject constructor(private val api: PluggedApi, v
     override suspend fun uplodImage(image: MultipartBody.Part): Response<UploadImageResponse> {
         return  api.uplodImage(image)
     }
+
+    override suspend fun searchRecord(query: SearchBody): Response<SearchResponse> {
+        return api.searchRecord(query)
+    }
 }

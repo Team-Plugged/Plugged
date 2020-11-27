@@ -37,6 +37,11 @@ interface PluggedApi {
     ): Response<UploadImageResponse>
 
 
+    @Headers("Content-Type: application/json")
+    @POST("patients/record")
+    suspend fun searchRecord(@Body query: SearchBody):Response<SearchResponse>
+
+
 
 
 }

@@ -24,12 +24,15 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_add_patient.*
 import java.io.FileNotFoundException
 import java.io.InputStream
+import java.util.*
 
 private const val REQUEST_CODE_IMAGE_PICK = 100
 
 @AndroidEntryPoint
 class AddPatientFragment : Fragment() {
     private val viewModel: PluggedViewModel by viewModels()
+    var timer = Timer()
+    val DELAY:Long = 3000
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -223,20 +226,10 @@ class AddPatientFragment : Fragment() {
 
                         response?.data.let {
                             Log.d(TAG, it.toString())
+                            successDialog()
 
                         }
 
-                        val mDialogView = LayoutInflater.from(activity).inflate(R.layout.success_layout, null)
-                        //AlertDialogBuilder
-                        val mBuilder = activity?.let {
-                            AlertDialog.Builder(it)
-                                .setView(mDialogView)
-                        }
-
-                        //show dialog
-                        val mAlertDialog = mBuilder?.show()
-//                        delay(200L)
-//                        mAlertDialog?.dismiss()
 
                     }
 
@@ -255,11 +248,12 @@ class AddPatientFragment : Fragment() {
 
             })
 
-//                Onserver for Image Upload
+//                Observer for Image Upload
             viewModel.uploadPic.observe(viewLifecycleOwner, Observer { response ->
                 when (response) {
 
                     is Resource.Loading -> {
+
 
                         progress_bar.visibility = View.VISIBLE
                     }
@@ -270,18 +264,6 @@ class AddPatientFragment : Fragment() {
                             Log.d(TAG, it.toString())
 
                         }
-
-                        val mDialogView = LayoutInflater.from(activity).inflate(R.layout.success_layout, null)
-                        //AlertDialogBuilder
-                        val mBuilder = activity?.let {
-                            AlertDialog.Builder(it)
-                                .setView(mDialogView)
-                        }
-
-                        //show dialog
-                        val mAlertDialog = mBuilder?.show()
-//                        delay(200L)
-//                        mAlertDialog?.dismiss()
 
                     }
 
@@ -348,10 +330,15 @@ class AddPatientFragment : Fragment() {
                 .setView(mDialogView)
         }
 
-        //show dialog
-        val mAlertDialog = mBuilder?.show()
-//        delay(200L)
+        var  mAlertDialog = mBuilder?.show()!!
+        timer.schedule(object : TimerTask() {
+            override fun run() {
+            }
+        }, DELAY)
         mAlertDialog?.dismiss()
+
+        timer.cancel()
+        timer.purge()
 
     }
 

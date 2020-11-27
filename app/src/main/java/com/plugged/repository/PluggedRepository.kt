@@ -25,6 +25,9 @@ class PluggedRepository@Inject constructor(private val apiHelper: ApiHelper)  {
 
     suspend fun uplodImage(image: MultipartBody.Part) = apiHelper.uplodImage(image)
 
+    suspend fun searchRecord(query: SearchBody)=apiHelper.searchRecord(query)
+
+
 
 
 }

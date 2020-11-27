@@ -27,4 +27,7 @@ interface ApiHelper {
     suspend fun uplodImage(image: MultipartBody.Part
     ): Response<UploadImageResponse>
 
+    suspend fun searchRecord(query: SearchBody):Response<SearchResponse>
+
+
 }
