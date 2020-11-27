@@ -1,5 +1,6 @@
 package com.plugged.ui.hospital
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -14,6 +15,7 @@ import com.plugged.Auth.LoginFragment
 import com.plugged.R
 import com.plugged.models.AddRecord
 import com.plugged.ui.home.PatientActivity
+import com.plugged.utils.Constants.Companion.SHARED_PREF
 import com.plugged.utils.MyPreferences
 import com.plugged.utils.Resource
 import com.plugged.viewmodel.PluggedViewModel
@@ -37,6 +39,8 @@ class AddRecordFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE) ?: return
+        val token = sharedPref.getString(SHARED_PREF, "")
 
 
         btn_add.setOnClickListener {
@@ -50,7 +54,7 @@ class AddRecordFragment : Fragment() {
 
             val record = AddRecord(allergies,diagnosis,notes,patientEmail,prescription,symptoms)
 
-            val token = MyPreferences(activity).token
+
 
 
                 if (token != null && token!== "") {

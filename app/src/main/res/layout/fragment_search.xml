@@ -10,6 +10,7 @@
         android:layout_height="50dp"
         android:layout_margin="8dp"
         android:id="@+id/edit_search"
+        android:inputType="textEmailAddress"
         android:padding="8dp"
         android:hint="Search ...."
         android:drawableStart="@drawable/search"

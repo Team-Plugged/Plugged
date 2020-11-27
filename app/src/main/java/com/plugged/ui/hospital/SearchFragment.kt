@@ -11,18 +11,18 @@ import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.observe
+import androidx.lifecycle.Observer
 import com.plugged.R
 import com.plugged.models.SearchBody
-import com.plugged.utils.Constants.Companion.SEARCH_DELAY
 import com.plugged.utils.Constants.Companion.TAG
+import com.plugged.utils.Resource
 import com.plugged.viewmodel.PluggedViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_search.*
 import kotlinx.coroutines.Job
-import androidx.lifecycle.Observer
-import com.plugged.utils.Resource
-
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.util.*
 
 
@@ -45,26 +45,29 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var job: Job? = null
-
-        viewModel.searchRecord.observe(viewLifecycleOwner, Observer {response->
+        viewModel.searchRecord.observe(viewLifecycleOwner, Observer { response ->
 
             when (response) {
 
                 is Resource.Loading -> {
+                    progressBar.visibility = View.VISIBLE
 
                 }
 
                 is Resource.Success -> {
+                    progressBar.visibility = View.INVISIBLE
+
                     response.data?.let { data ->
-                        Log.d(TAG,data.toString())
+                        Log.d(TAG, data.toString())
                     }
 
                 }
 
                 is Resource.Error -> {
+                    progressBar.visibility = View.INVISIBLE
 
                     response.message?.let {
+                        Log.d(TAG,it.toString())
                         Toast.makeText(activity, "$it", Toast.LENGTH_SHORT)
                             .show()
                     }
@@ -72,37 +75,25 @@ class SearchFragment : Fragment() {
             }
 
 
-
         })
 
+        var job: Job? = null
 
+        edit_search.addTextChangedListener {editable->
 
-        edit_search.addTextChangedListener(object : TextWatcher {
-            var timer = Timer()
-            override fun afterTextChanged(s: Editable?) {
-
-                if (s?.length!! > 7)
-                {
-                    val query  =SearchBody(s.toString())
-                    Log.e("TAG","timer start")
-                    timer.schedule(object : TimerTask() {
-                        override fun run() {
-                                viewModel.search(query)
-                        }
-                    }, 3000)
+            job?.cancel()
+            job = MainScope().launch {
+                delay(3000)
+                editable.let {
+                    if (editable.toString().isNotEmpty())
+                    {
+                        val query = SearchBody(editable.toString())
+                            viewModel.search(query)
+                    }
                 }
-
             }
 
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                Log.e("TAG","timer cancel ")
-                timer.cancel() //Terminates this timer,discarding any currently scheduled tasks.
-                timer.purge() //Removes all cancelled tasks from this timer's task queue.
-            }
-        })
-
+        }
 
 
     }

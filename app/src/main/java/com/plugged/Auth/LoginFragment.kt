@@ -1,5 +1,6 @@
 package com.plugged.Auth
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -17,6 +18,7 @@ import com.plugged.R
 import com.plugged.models.Login
 import com.plugged.ui.home.HospitalActivity
 import com.plugged.ui.home.PatientActivity
+import com.plugged.utils.Constants.Companion.SHARED_PREF
 import com.plugged.utils.MyPreferences
 import com.plugged.utils.Resource
 import com.plugged.viewmodel.PluggedViewModel
@@ -167,7 +169,13 @@ class LoginFragment : DialogFragment() {
                         progress_bar.visibility = View.INVISIBLE
                         response.data?.let { staff_data ->
 
-                            MyPreferences(activity).token = staff_data.token
+                            val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE) ?: return@Observer
+                            with (sharedPref.edit()) {
+                                putString(SHARED_PREF, staff_data.token)
+                                apply()
+                            }
+
+//                            MyPreferences(activity).token = staff_data.token
                             MyPreferences(activity).is_staff = true
                             MyPreferences(activity).logged_in = true
                             Log.d(TAG, staff_data.toString())

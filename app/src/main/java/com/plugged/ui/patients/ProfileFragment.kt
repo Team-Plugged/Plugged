@@ -41,8 +41,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getPatient().observe(viewLifecycleOwner, Observer { patient ->
 
-            Log.d(TAG,"Patient Profile"+patient.toString())
-
             if (patient  !=null)
             {
                 setData(patient)

@@ -147,7 +147,7 @@ class PluggedViewModel @ViewModelInject constructor(
         catch (t: Throwable) {
             when (t) {
                 is IOException -> searchRecord.postValue(Resource.Error("Network Error"))
-                else -> searchRecord.postValue(Resource.Error("Conversion Error"))
+                else -> searchRecord.postValue(Resource.Error(t.message.toString()))
             }
         }
 

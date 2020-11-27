@@ -3,7 +3,7 @@ package com.plugged.utils
 import android.content.Context
 import androidx.preference.PreferenceManager
 
-class MyPreferences  (context: Context?) {
+class MyPreferences(context: Context?) {
 
     companion object {
         private const val PLUGGED_APP = "Plugged"
@@ -17,6 +17,7 @@ class MyPreferences  (context: Context?) {
     var is_staff = preferences.getBoolean(PLUGGED_APP, false)
         set(value) = preferences.edit().putBoolean(PLUGGED_APP, value).apply()
 
-    var token = preferences.getString(PLUGGED_APP, "")
-        set(value) = preferences.edit().putString(PLUGGED_APP, value).apply()
+
+//    var token = preferences.getString(PLUGGED_APP, "null")
+//        set(value) = preferences.edit().putString(PLUGGED_APP, value).apply()
 }
