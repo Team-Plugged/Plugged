@@ -16,6 +16,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.plugged.R
 import com.plugged.models.Login
+import com.plugged.models.Token
 import com.plugged.ui.home.HospitalActivity
 import com.plugged.ui.home.PatientActivity
 import com.plugged.utils.Constants.Companion.SHARED_PREF
@@ -112,8 +113,8 @@ class LoginFragment : DialogFragment() {
                 view.btn_add.visibility = View.INVISIBLE
                 viewModel.LoginPatient(Login)
             } else {
-//                startActivity(Intent(activity, HospitalActivity::class.java))
-                viewModel.LoginHospital(Login)
+                startActivity(Intent(activity, HospitalActivity::class.java))
+//                viewModel.LoginHospital(Login)
 
             }
 
@@ -169,13 +170,9 @@ class LoginFragment : DialogFragment() {
                         progress_bar.visibility = View.INVISIBLE
                         response.data?.let { staff_data ->
 
-                            val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE) ?: return@Observer
-                            with (sharedPref.edit()) {
-                                putString(SHARED_PREF, staff_data.token)
-                                apply()
-                            }
+                            val token = Token(1,staff_data.token)
+                            viewModel.saveToken(token)
 
-//                            MyPreferences(activity).token = staff_data.token
                             MyPreferences(activity).is_staff = true
                             MyPreferences(activity).logged_in = true
                             Log.d(TAG, staff_data.toString())

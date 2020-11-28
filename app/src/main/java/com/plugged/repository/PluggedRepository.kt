@@ -12,9 +12,7 @@ class PluggedRepository@Inject constructor(private val apiHelper: ApiHelper)  {
     suspend fun register_patient(patient: RegPatient): Response<Reg_PatientResponse> = apiHelper.register_patient(patient)
     suspend fun  login_patient(login: Login): Response<LoginResponse> = apiHelper.login_Patient(login)
 
-    suspend fun insert(patient:LoginResponse)=apiHelper.insert(patient)
-    fun getPatient()=apiHelper.getPatient()
-    suspend fun deletePatient()=apiHelper.deletePatient()
+
 
     suspend fun register_hospital(register_hospital: RegisterHospital)=apiHelper.register_hospital(register_hospital)
 
@@ -26,6 +24,18 @@ class PluggedRepository@Inject constructor(private val apiHelper: ApiHelper)  {
     suspend fun uplodImage(image: MultipartBody.Part) = apiHelper.uplodImage(image)
 
     suspend fun searchRecord(query: SearchBody)=apiHelper.searchRecord(query)
+
+
+    //Token
+    suspend fun insertToken(token: Token)=apiHelper.insertToken(token)
+    fun getToken()=apiHelper.getToken()
+    suspend fun deleteToken()=apiHelper.deleteToken()
+
+
+    // Patient Data
+    suspend fun insert(patient:LoginResponse)=apiHelper.insert(patient)
+    fun getPatient()=apiHelper.getPatient()
+    suspend fun deletePatient()=apiHelper.deletePatient()
 
 
 

@@ -338,6 +338,19 @@ class PluggedViewModel @ViewModelInject constructor(
 
 
 
+    fun saveToken(token: Token) = viewModelScope.launch {
+        repository.insertToken(token)
+    }
+
+    fun deleteToken() = viewModelScope.launch {
+
+        repository.deleteToken()
+    }
+
+    fun getToken() = repository.getToken()
+
+
+
 
 
 

@@ -2,8 +2,9 @@ package com.plugged.models
 
 data class Reg_PatientResponse(
     val _id: String,
-    val age: Int,
-    val email: String,
+    val address: String,
+    val contactInfo: String,
+    val dateOfBirth: String,
     val firstname: String,
     val gender: String,
     val genotype: String,

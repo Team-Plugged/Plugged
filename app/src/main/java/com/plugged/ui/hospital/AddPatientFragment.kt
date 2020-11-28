@@ -1,6 +1,7 @@
 package com.plugged.ui.hospital
 
 import android.app.Activity
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -24,6 +25,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_add_patient.*
 import java.io.FileNotFoundException
 import java.io.InputStream
+import java.text.SimpleDateFormat
 import java.util.*
 
 private const val REQUEST_CODE_IMAGE_PICK = 100
@@ -32,7 +34,9 @@ private const val REQUEST_CODE_IMAGE_PICK = 100
 class AddPatientFragment : Fragment() {
     private val viewModel: PluggedViewModel by viewModels()
     var timer = Timer()
-    val DELAY:Long = 3000
+    val DELAY: Long = 3000
+    var dob = ""
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -168,9 +172,14 @@ class AddPatientFragment : Fragment() {
                 return@setOnClickListener
             }
 
-            if (edit_age.text.isNullOrEmpty()) {
-                edit_age.error = "Age  is Required"
-                edit_age.requestFocus()
+            if (edit_contact.text.isNullOrEmpty()) {
+                edit_contact.error = "Contact Number is Required"
+                edit_contact.requestFocus()
+                return@setOnClickListener
+            }
+            if (edit_address.text.isNullOrEmpty()) {
+                edit_address.error = "Address is Required"
+                edit_address.requestFocus()
                 return@setOnClickListener
             }
 
@@ -188,7 +197,9 @@ class AddPatientFragment : Fragment() {
 
             val first_name = edit_firstName.text.toString()
             val last_name = edit_firstName.text.toString()
-            val age = edit_age.text.toString()
+//            val age = edit_age.text.toString()
+            val contact = edit_contact.text.toString()
+            val address = edit_address.text.toString()
             val height = edit_height.text.toString()
             val weight = edit_weight.text.toString()
             val email = edit_email.text.toString()
@@ -196,7 +207,9 @@ class AddPatientFragment : Fragment() {
 
             val image = "http"
             val Patient = RegPatient(
-                age,
+                address,
+                contact,
+                dob,
                 email,
                 first_name,
                 gender,
@@ -207,6 +220,8 @@ class AddPatientFragment : Fragment() {
                 password,
                 weight
             )
+
+
             Log.d(TAG, Patient.toString())
             viewModel.RegisterPatient(Patient)
             viewModel.getPatient()
@@ -285,6 +300,11 @@ class AddPatientFragment : Fragment() {
 
         }
 
+        btn_dob.setOnClickListener {
+            setDate()
+
+        }
+
         image.setOnClickListener {
 
             Intent(Intent.ACTION_GET_CONTENT).also {
@@ -297,6 +317,31 @@ class AddPatientFragment : Fragment() {
 
         }
 
+    }
+
+    fun setDate() {
+        val cal = Calendar.getInstance()
+
+        val dateSetListener =
+            DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+                cal.set(Calendar.YEAR, year)
+                cal.set(Calendar.MONTH, monthOfYear)
+                cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+                val myFormat = "MM/dd/yyyy" // mention the format you need
+                val sdf = SimpleDateFormat(myFormat, Locale.US)
+                dob = sdf.format(cal.getTime())
+                text_date.setText(dob)
+
+            }
+
+        activity?.let {
+            DatePickerDialog(
+                it, dateSetListener,
+                cal.get(Calendar.YEAR),
+                cal.get(Calendar.MONTH),
+                cal.get(Calendar.DAY_OF_MONTH)
+            ).show()
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -330,7 +375,7 @@ class AddPatientFragment : Fragment() {
                 .setView(mDialogView)
         }
 
-        var  mAlertDialog = mBuilder?.show()!!
+        var mAlertDialog = mBuilder?.show()!!
         timer.schedule(object : TimerTask() {
             override fun run() {
             }

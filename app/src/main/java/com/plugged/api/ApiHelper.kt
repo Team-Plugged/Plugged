@@ -18,6 +18,13 @@ interface ApiHelper {
     fun getPatient():LiveData<LoginResponse>
     suspend fun deletePatient()
 
+
+    //Token
+
+    suspend fun insertToken(token: Token):Long
+    fun getToken():LiveData<Token>
+    suspend fun deleteToken()
+
     suspend fun register_hospital(register_hospital: RegisterHospital): Response<RegisterHospitalResponse>
 
     suspend fun login_hospital(login_hospital: Login): Response<LoginHospitalResponse>

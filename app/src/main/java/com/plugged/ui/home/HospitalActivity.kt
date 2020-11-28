@@ -4,24 +4,24 @@ import android.os.Bundle
 import android.os.Handler
 import android.widget.Toast
 import android.widget.Toast.makeText
+import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 import com.plugged.R
 import com.plugged.utils.MyPreferences
+import com.plugged.viewmodel.PluggedViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.hospital_content.*
 
 @AndroidEntryPoint
 class HospitalActivity : AppCompatActivity() {
-
+    private val viewModel: PluggedViewModel by viewModels()
 
     lateinit var toolbar: Toolbar
     lateinit var drawerLayout: DrawerLayout
@@ -49,8 +49,10 @@ class HospitalActivity : AppCompatActivity() {
 
         setupDrawerLayout()
 
-         val logOut = navView.menu.findItem(R.id.logOut)
+        val logOut = navView.menu.findItem(R.id.logOut)
         logOut.setOnMenuItemClickListener {
+
+            viewModel.deleteToken()
             MyPreferences(this).is_staff = false
             MyPreferences(this).logged_in = false
             this.finishAffinity()
@@ -58,6 +60,7 @@ class HospitalActivity : AppCompatActivity() {
         }
 
     }
+
     private var doubleBackToExitPressedOnce = false
 
     override fun onBackPressed() {
@@ -82,13 +85,10 @@ class HospitalActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
         NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
     }
+
     override fun onSupportNavigateUp(): Boolean {
         return NavigationUI.navigateUp(navController, drawerLayout)
     }
-
-
-
-
 
 
 }

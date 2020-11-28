@@ -31,6 +31,19 @@ class ApiHelperImplementation @Inject constructor(private val api: PluggedApi, v
         return db.deletePatient()
     }
 
+    override suspend fun insertToken(token: Token): Long {
+        return db.insertToken(token)
+    }
+
+    override fun getToken(): LiveData<Token> {
+       return db.getToken()
+    }
+
+    override suspend fun deleteToken() {
+        return db.deleteToken()
+    }
+
+
     override suspend fun register_hospital(register_hospital: RegisterHospital): Response<RegisterHospitalResponse> {
         return api.register_hospital(register_hospital)
     }

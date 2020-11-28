@@ -10,7 +10,7 @@
         android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/profile_image"
         android:layout_width="180dp"
         android:layout_height="180dp"
         android:layout_marginTop="32dp"
@@ -35,7 +35,7 @@
         android:layout_marginTop="32dp"
         android:text="Gender"
         app:layout_constraintStart_toStartOf="@+id/guideline8"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_image" />
 
     <TextView
         android:id="@+id/gender"
@@ -44,7 +44,7 @@
         android:layout_marginTop="32dp"
         android:text="Male"
         app:layout_constraintStart_toStartOf="@+id/guideline11"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_image" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline11"
@@ -65,7 +65,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <TextView
-        android:id="@+id/age"
+        android:id="@+id/text_dob"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -91,7 +91,7 @@
         android:layout_marginTop="16dp"
         android:text="120cm"
         app:layout_constraintStart_toStartOf="@+id/guideline11"
-        app:layout_constraintTop_toBottomOf="@+id/age" />
+        app:layout_constraintTop_toBottomOf="@+id/text_dob" />
 
     <TextView
         android:id="@+id/textView22"
@@ -241,7 +241,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/dob" />
 
             <TextView
-                android:id="@+id/phone"
+                android:id="@+id/text_phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"

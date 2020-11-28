@@ -1,7 +1,9 @@
 package com.plugged.models
 
 data class RegPatient(
-    val age: String,
+    val address: String,
+    val contactInfo: String,
+    val dateOfBirth: String,
     val email: String,
     val firstname: String,
     val gender: String,

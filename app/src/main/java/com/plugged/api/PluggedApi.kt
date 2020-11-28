@@ -1,9 +1,14 @@
 package com.plugged.api
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.plugged.models.*
 import okhttp3.MultipartBody
 import retrofit2.Response
 import retrofit2.http.*
+
+
+
 
 interface PluggedApi {
 
@@ -43,7 +48,7 @@ interface PluggedApi {
 
     //    @GET("patients/record")
     @Headers("Content-Type: application/json")
-    @HTTP(method = "GET", path = "patients/record", hasBody = true)
+    @POST("patients/record")
     suspend fun searchRecord(@Body query: SearchBody): Response<SearchResponse>
 
 

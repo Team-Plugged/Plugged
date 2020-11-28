@@ -1,7 +1,6 @@
 package com.plugged.ui.hospital
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,21 +10,21 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.observe
 import com.plugged.Auth.LoginFragment
 import com.plugged.R
 import com.plugged.models.AddRecord
-import com.plugged.ui.home.PatientActivity
 import com.plugged.utils.Constants.Companion.SHARED_PREF
-import com.plugged.utils.MyPreferences
+import com.plugged.utils.Constants.Companion.TAG
 import com.plugged.utils.Resource
 import com.plugged.viewmodel.PluggedViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_add_record.*
-import kotlinx.android.synthetic.main.fragment_login.view.*
 
 @AndroidEntryPoint
 class AddRecordFragment : Fragment() {
     private val viewModel: PluggedViewModel by viewModels()
+    var token = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,8 +38,18 @@ class AddRecordFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE) ?: return
-        val token = sharedPref.getString(SHARED_PREF, "")
+
+       viewModel.getToken().observe(viewLifecycleOwner, Observer {data->
+
+         if (data !=null)
+         {
+             token = data.token
+         }
+           Log.e(TAG,token)
+
+
+
+       })
 
 
         btn_add.setOnClickListener {
@@ -52,17 +61,18 @@ class AddRecordFragment : Fragment() {
             val notes = edit_notes.text.toString()
             val patientEmail = edit_patientEmail.text.toString()
 
-            val record = AddRecord(allergies,diagnosis,notes,patientEmail,prescription,symptoms)
+            val record =
+                AddRecord(allergies, diagnosis, notes, patientEmail, prescription, symptoms)
 
 
 
 
-                if (token != null && token!== "") {
-                    viewModel.addPatientRecord(token,record)
+            if (token !== "") {
+                viewModel.addPatientRecord(token, record)
 
             }
 
-            viewModel.addRecord.observe(viewLifecycleOwner, Observer {response->
+            viewModel.addRecord.observe(viewLifecycleOwner, Observer { response ->
 
                 when (response) {
 
@@ -72,7 +82,7 @@ class AddRecordFragment : Fragment() {
 
                     is Resource.Success -> {
                         response.data?.let { data ->
-                            Toast.makeText(activity, data.toString(), Toast.LENGTH_SHORT).show()
+                            Log.e(TAG,data.toString())
                         }
 
                     }
@@ -92,6 +102,12 @@ class AddRecordFragment : Fragment() {
         }
 
 
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE) ?: return
+         token = sharedPref.getString(SHARED_PREF, "No value").toString()
     }
 
 }

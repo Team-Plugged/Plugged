@@ -1,6 +1,11 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.hospital.AddPatientFragment">
@@ -46,22 +51,21 @@
 
     <EditText
         android:id="@+id/edit_lastName"
-        android:layout_width="129dp"
+        android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_marginStart="8dp"
-        android:padding="8dp"
+        android:layout_marginStart="24dp"
         android:background="@drawable/edit_text_bg"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint=" Last Name"
+        android:inputType="textPersonName"
+        android:padding="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/edit_firstName"
-        app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintStart_toEndOf="@+id/edit_firstName"
         app:layout_constraintTop_toTopOf="@+id/edit_firstName" />
 
     <Spinner
         android:id="@+id/gender_spinner"
-        android:layout_width="70dp"
+        android:layout_width="120dp"
         android:layout_height="50dp"
 
         android:layout_marginTop="24dp"
@@ -69,45 +73,34 @@
         app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toBottomOf="@+id/edit_firstName" />
 
+
     <EditText
-        android:id="@+id/edit_age"
-        android:padding="4dp"
-        android:layout_width="70dp"
+        android:id="@+id/edit_height"
+        android:layout_width="100dp"
         android:layout_height="50dp"
-        android:hint="Age"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:background="@drawable/edit_text_bg"
         android:ems="10"
+        android:hint="Ht"
         android:inputType="number"
+        android:padding="4dp"
         app:layout_constraintBottom_toBottomOf="@+id/gender_spinner"
         app:layout_constraintStart_toEndOf="@+id/gender_spinner"
         app:layout_constraintTop_toTopOf="@+id/gender_spinner" />
 
     <EditText
-        android:id="@+id/edit_height"
-        android:layout_width="70dp"
-        android:padding="4dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="8dp"
-        android:background="@drawable/edit_text_bg"
-        android:hint="Ht"
-        android:ems="10"
-        android:inputType="number"
-        app:layout_constraintBottom_toBottomOf="@+id/edit_age"
-        app:layout_constraintStart_toEndOf="@+id/edit_age"
-        app:layout_constraintTop_toTopOf="@+id/edit_age" />
-
-    <EditText
         android:id="@+id/edit_weight"
-        android:layout_width="70dp"
+        android:layout_width="100dp"
         android:layout_height="50dp"
-        android:padding="5dp"
         android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:background="@drawable/edit_text_bg"
         android:ems="10"
-        android:inputType="number"
         android:hint="Wt"
+        android:inputType="number"
+        android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="@+id/edit_height"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintStart_toEndOf="@+id/edit_height"
         app:layout_constraintTop_toTopOf="@+id/edit_height" />
 
@@ -180,9 +173,10 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_age"
+        app:layout_constraintTop_toTopOf="parent"
         app:mk_color="@color/colorPrimary"
         app:mk_type="ClassicSpinner" />
 
@@ -191,13 +185,61 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginTop="24dp"
+        android:background="@drawable/edit_text_bg"
         android:ems="10"
+        android:hint="Password"
         android:inputType="textPersonName"
         android:padding="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/btn_dob" />
+
+    <EditText
+        android:id="@+id/edit_contact"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:padding="@dimen/default_padding"
         android:background="@drawable/edit_text_bg"
-        android:hint="Password"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Contact Number"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toBottomOf="@+id/edit_email" />
 
+    <EditText
+        android:id="@+id/edit_address"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:background="@drawable/edit_text_bg"
+        android:layout_marginTop="24dp"
+        android:padding="@dimen/default_padding"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Address"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/edit_contact" />
+
+    <Button
+        android:id="@+id/btn_dob"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Date of Birth"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/edit_address" />
+
+    <TextView
+        android:id="@+id/text_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_dob"
+        app:layout_constraintStart_toEndOf="@+id/btn_dob"
+        app:layout_constraintTop_toTopOf="@+id/btn_dob" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

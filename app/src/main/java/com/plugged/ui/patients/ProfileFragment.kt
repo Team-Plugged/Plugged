@@ -2,7 +2,6 @@ package com.plugged.ui.patients
 
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,10 +14,18 @@ import androidx.lifecycle.Observer
 import com.plugged.R
 import com.plugged.databinding.FragmentProfileBinding
 import com.plugged.models.LoginResponse
-import com.plugged.utils.Constants.Companion.TAG
+import com.plugged.utils.bindImageUrl
 import com.plugged.viewmodel.PluggedViewModel
+import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.profile_layout.*
+import kotlinx.android.synthetic.main.fragment_profile.*
+import kotlinx.android.synthetic.main.profile_layout.email
+import kotlinx.android.synthetic.main.profile_layout.f_name
+import kotlinx.android.synthetic.main.profile_layout.gender
+import kotlinx.android.synthetic.main.profile_layout.height
+import kotlinx.android.synthetic.main.profile_layout.l_name
+import kotlinx.android.synthetic.main.profile_layout.text_dob
+import kotlinx.android.synthetic.main.profile_layout.weight
 
 @AndroidEntryPoint
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
@@ -52,12 +59,19 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     fun setData(patient:LoginResponse)
     {
         gender.text = patient.gender
-        age.text = patient.age.toString()
         weight.text =patient.weight.toString()
         height.text = patient.height.toString()
         f_name.text = patient.firstname
         l_name.text = patient.lastname
         email.text = patient.email
+        text_dob.text = patient.dateOfBirth
+        text_phone.text = patient.contactInfo
+        address.text = patient.address
+
+        Picasso.get()
+            .load(patient.image)
+            .into(profile_image)
+
 
     }
 

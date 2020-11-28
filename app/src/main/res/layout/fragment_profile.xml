@@ -7,18 +7,20 @@
             name="patient"
             type="com.plugged.models.LoginResponse" />
     </data>
-<ScrollView android:layout_height="match_parent"
+
+<ScrollView
+    android:layout_height="match_parent"
     android:layout_width="match_parent"
     tools:context=".ui.patients.ProfileFragment">
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
-    android:padding="8dp"
+    android:padding="@dimen/default_padding"
     android:background="@drawable/patient_record_bg"
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/profile_image"
         android:layout_width="180dp"
         android:layout_height="180dp"
         android:layout_marginTop="32dp"
@@ -30,7 +32,7 @@
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline8"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="61dp" />
 
@@ -43,7 +45,7 @@
         android:layout_marginTop="32dp"
         android:text="Gender"
         app:layout_constraintStart_toStartOf="@+id/guideline8"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_image" />
 
     <TextView
         android:id="@+id/gender"
@@ -52,28 +54,28 @@
         android:layout_marginTop="32dp"
         android:text=""
         app:layout_constraintStart_toStartOf="@+id/guideline11"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_image" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline11"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="150dp" />
 
     <TextView
         android:id="@+id/textView14"
-        android:layout_width="17dp"
-        android:layout_height="7dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Age"
+        android:text="Date of Birth"
         android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/guideline8"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <TextView
-        android:id="@+id/age"
+        android:id="@+id/text_dob"
         android:layout_width="10dp"
         android:layout_height="16dp"
         android:layout_marginTop="16dp"
@@ -99,7 +101,7 @@
         android:layout_marginTop="16dp"
         android:text=""
         app:layout_constraintStart_toStartOf="@+id/guideline11"
-        app:layout_constraintTop_toBottomOf="@+id/age" />
+        app:layout_constraintTop_toBottomOf="@+id/text_dob" />
 
     <TextView
         android:id="@+id/textView22"
@@ -126,6 +128,7 @@
         android:layout_height="match_parent"
         android:layout_marginTop="24dp"
         android:padding="8dp"
+        android:orientation="vertical"
         android:background="@drawable/patient_record_bg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -249,7 +252,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/dob" />
 
             <TextView
-                android:id="@+id/phone"
+                android:id="@+id/text_phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
