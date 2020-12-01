@@ -29,6 +29,10 @@ class PluggedViewModel @ViewModelInject constructor(
 
     val loginResponse: MutableLiveData<Resource<LoginResponse>> = MutableLiveData()
     var login_data:LoginResponse?=null
+
+    var healthRecord:MutableLiveData<Resource<HealthRecordsResponse>> = MutableLiveData()
+    var healthData:HealthRecordsResponse?=null
+
     var register_hospital__data:RegisterHospitalResponse?=null
     var login_hospital__data:LoginHospitalResponse?=null
     val registerPatientResponse: MutableLiveData<Resource<Reg_PatientResponse>> = MutableLiveData()
@@ -79,6 +83,41 @@ class PluggedViewModel @ViewModelInject constructor(
             }
         }
     }
+
+    private suspend fun getRecords(){
+        healthRecord.postValue(Resource.Loading())
+        try{
+            if (networkHelper.isNetworkConnected())
+            {
+                val response = repository.getRecords()
+                if (response.isSuccessful)
+                {
+                    response.body()?.let {result->
+                        healthData = result
+
+                        healthRecord.postValue(Resource.Success(healthData ?:result))
+
+                    }
+                }
+                else{
+                    healthRecord.postValue( Resource.Error(response.message()))
+                }
+            }
+
+            else{
+                healthRecord.postValue( Resource.Error("No Internet Connection"))
+
+            }
+        }
+
+        catch (t: Throwable) {
+            when (t) {
+                is IOException -> loginResponse.postValue(Resource.Error("Network Error"))
+                else -> loginResponse.postValue(Resource.Error("Conversion Error"))
+            }
+        }
+    }
+
 
 
     private suspend fun login_hospital(login_hospital: Login){
@@ -158,6 +197,10 @@ class PluggedViewModel @ViewModelInject constructor(
 
     fun search(query: SearchBody)= viewModelScope.launch {
         searchRecord(query)
+    }
+
+    fun get_record() = viewModelScope.launch {
+        getRecords()
     }
 
 
@@ -245,18 +288,18 @@ class PluggedViewModel @ViewModelInject constructor(
         login_patient(login)
     }
 
-    fun addPatientRecord(token:String,record: AddRecord) = viewModelScope.launch {
-        addRecord(token, record)
+    fun addPatientRecord(record: AddRecord) = viewModelScope.launch {
+        addRecord(record)
     }
 
-    private suspend fun addRecord(token:String,record: AddRecord)
+    private suspend fun addRecord(record: AddRecord)
     {
 
         addRecord.postValue(Resource.Loading())
         try{
             if (networkHelper.isNetworkConnected())
             {
-                val response = repository.addRecord(token,record)
+                val response = repository.addRecord(record)
                 if (response.isSuccessful)
                 {
                     response.body()?.let {result->
@@ -299,13 +342,20 @@ class PluggedViewModel @ViewModelInject constructor(
     {
         uploadPic.postValue(Resource.Loading())
         viewModelScope.launch {
+
             val image = MultipartBody.Part.createFormData(
-                "profile_pic", "myPic.jpg", profile_pic.readBytes()
-                    .toRequestBody(
-                        "image/*".toMediaTypeOrNull(),
-                        0
-                    )
+                "image", "myPic.jpg", RequestBody.create(
+                    "image/*".toMediaTypeOrNull(),
+                    profile_pic.readBytes()
+                )
             )
+//            val image = MultipartBody.Part.createFormData(
+//                "image", "myPic.jpg", profile_pic.readBytes()
+//                    .toRequestBody(
+//                        "image/*".toMediaTypeOrNull(),
+//                        0
+//                    )
+//            )
             try {
                 val response = repository.uplodImage(image)
                 response.body()?.let {result->

@@ -130,9 +130,10 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintHorizontal_bias="0.526"
+        app:layout_constraintHorizontal_bias="0.545"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.43"
         app:mk_color="@color/colorPrimary"
         app:mk_type="ClassicSpinner" />
 

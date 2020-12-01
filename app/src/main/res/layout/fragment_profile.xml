@@ -9,6 +9,7 @@
     </data>
 
 <ScrollView
+
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     tools:context=".ui.patients.ProfileFragment">
@@ -36,6 +37,14 @@
         android:orientation="vertical"
         app:layout_constraintGuide_begin="61dp" />
 
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline11"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="150dp" />
+
     <TextView
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
@@ -56,12 +65,7 @@
         app:layout_constraintStart_toStartOf="@+id/guideline11"
         app:layout_constraintTop_toBottomOf="@+id/profile_image" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline11"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="150dp" />
+
 
     <TextView
         android:id="@+id/textView14"

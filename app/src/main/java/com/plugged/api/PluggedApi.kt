@@ -16,6 +16,10 @@ interface PluggedApi {
     @POST("patients")
     suspend fun register_patient(@Body patient: RegPatient): Response<Reg_PatientResponse>
 
+    @Headers("Content-Type: application/json")
+    @GET("healthrecords")
+    suspend fun getRecords(): Response<HealthRecordsResponse>
+
 
     @Headers("Content-Type: application/json")
     @POST("patients/login")
@@ -33,7 +37,7 @@ interface PluggedApi {
     @Headers("Content-Type: application/json")
     @POST("healthrecords")
     suspend fun addRecord(
-        @Header("Authorization") token: String,
+//        @Header("Authorization") token: String,
         @Body record: AddRecord
     ): Response<AddRecordResponse>
 

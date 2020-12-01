@@ -1,20 +1,31 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.patients.RecordsFragment">
 
-<!--   <androidx.recyclerview.widget.RecyclerView-->
-<!--       android:layout_height="match_parent"-->
-<!--       android:layout_width="match_parent"-->
-<!--       tools:listitem="@layout/patient_record"-->
-<!--       />-->
-
-   <TextView
-       android:layout_width="wrap_content"
+   <androidx.recyclerview.widget.RecyclerView
+       android:id="@+id/recycler_view"
+       android:layout_width="match_parent"
        android:layout_height="match_parent"
-       android:textStyle="bold"
-       android:text="Patient Record"
-       android:textSize="40dp"/>
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       tools:listitem="@layout/patient_record" />
+   <com.tuyenmonkey.mkloader.MKLoader
+       android:id="@+id/progressBar"
+       android:layout_width="@dimen/progressBar_width"
+       android:layout_height="@dimen/progressBar_height"
+       android:visibility="invisible"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:mk_color="@color/colorPrimary"
+       app:mk_type="ClassicSpinner" />
 
-</FrameLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

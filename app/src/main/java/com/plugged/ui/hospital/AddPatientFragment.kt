@@ -3,7 +3,9 @@ package com.plugged.ui.hospital
 import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.os.FileUtils
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +17,11 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import com.google.android.gms.tasks.Continuation
+import com.google.android.gms.tasks.Task
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.UploadTask
+import com.google.firebase.storage.ktx.storage
 import com.plugged.R
 import com.plugged.models.RegPatient
 import com.plugged.utils.Constants.Companion.TAG
@@ -23,8 +30,10 @@ import com.plugged.viewmodel.PluggedViewModel
 import com.tuyenmonkey.mkloader.MKLoader
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_add_patient.*
+import java.io.File
 import java.io.FileNotFoundException
 import java.io.InputStream
+import java.net.URI
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -32,11 +41,19 @@ private const val REQUEST_CODE_IMAGE_PICK = 100
 
 @AndroidEntryPoint
 class AddPatientFragment : Fragment() {
+
+    private var imageUri: Uri? = null
+    private val imageRef = Firebase.storage.reference
+    private var imageUrl = ""
     private val viewModel: PluggedViewModel by viewModels()
     var timer = Timer()
     val DELAY: Long = 3000
     var dob = ""
 
+
+//    fun upload(uri: URI){
+//        val file: File = FileUtils.getFile(this, fileUri)
+//    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -215,7 +232,7 @@ class AddPatientFragment : Fragment() {
                 gender,
                 genoType,
                 height,
-                image,
+                imageUrl,
                 last_name,
                 password,
                 weight
@@ -349,19 +366,24 @@ class AddPatientFragment : Fragment() {
         if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE_IMAGE_PICK) {
             data?.data?.let {
 
-                try {
-                    data?.let {
-                        val inputStream: InputStream? =
-                            context?.contentResolver?.openInputStream(it.data!!)
-                        inputStream?.let { stream ->
+                progressBar.visibility = View.VISIBLE
+                imageUri = it
+                uploadImage()
+                progressBar.visibility = View.VISIBLE
 
-                            viewModel.uploadPhoto(stream)
-                        }
-                    }
-                } catch (e: FileNotFoundException) {
-                    e.printStackTrace()
-
-                }
+//                try {
+//                    data?.let {
+//                        val inputStream: InputStream? =
+//                            context?.contentResolver?.openInputStream(it.data!!)
+//                        inputStream?.let { stream ->
+//
+//                            viewModel.uploadPhoto(stream)
+//                        }
+//                    }
+//                } catch (e: FileNotFoundException) {
+//                    e.printStackTrace()
+//
+//                }
             }
         }
 
@@ -386,5 +408,38 @@ class AddPatientFragment : Fragment() {
         timer.purge()
 
     }
+
+    private fun uploadImage() {
+        if (imageUri != null) {
+            progressBar.visibility = View.VISIBLE
+            val ref = imageRef.child("uploads/" + UUID.randomUUID().toString())
+            val uploadTask = ref.putFile(imageUri!!)
+
+            uploadTask.continueWithTask(Continuation<UploadTask.TaskSnapshot, Task<Uri>> { task ->
+                if (!task.isSuccessful) {
+                    progressBar.visibility = View.INVISIBLE
+
+                    task.exception?.let {
+                        throw it
+                    }
+                }
+                return@Continuation ref.downloadUrl
+            }).addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    progressBar.visibility = View.INVISIBLE
+
+                    imageUrl = task.result.toString()
+                } else {
+                    // Handle failures
+                }
+            }.addOnFailureListener {
+                Toast.makeText(activity, "Sorry an Error Occured", Toast.LENGTH_SHORT).show()
+            }
+        } else {
+            Toast.makeText(activity, "Please Upload an Image", Toast.LENGTH_SHORT).show()
+
+        }
+    }
+
 
 }

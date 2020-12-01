@@ -10,7 +10,10 @@ import javax.inject.Inject
 class PluggedRepository@Inject constructor(private val apiHelper: ApiHelper)  {
 
     suspend fun register_patient(patient: RegPatient): Response<Reg_PatientResponse> = apiHelper.register_patient(patient)
+
     suspend fun  login_patient(login: Login): Response<LoginResponse> = apiHelper.login_Patient(login)
+
+    suspend fun getRecords(): Response<HealthRecordsResponse> = apiHelper.getRecords()
 
 
 
@@ -18,7 +21,7 @@ class PluggedRepository@Inject constructor(private val apiHelper: ApiHelper)  {
 
     suspend fun login_hospital(login_hospital: Login)=apiHelper.login_hospital(login_hospital)
 
-    suspend fun addRecord(token: String,addRecord: AddRecord)=apiHelper.addRecord(token,addRecord)
+    suspend fun addRecord(addRecord: AddRecord)=apiHelper.addRecord(addRecord)
 
 
     suspend fun uplodImage(image: MultipartBody.Part) = apiHelper.uplodImage(image)

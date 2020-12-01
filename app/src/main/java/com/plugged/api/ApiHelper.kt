@@ -18,6 +18,8 @@ interface ApiHelper {
     fun getPatient():LiveData<LoginResponse>
     suspend fun deletePatient()
 
+    suspend fun getRecords(): Response<HealthRecordsResponse>
+
 
     //Token
 
@@ -29,7 +31,7 @@ interface ApiHelper {
 
     suspend fun login_hospital(login_hospital: Login): Response<LoginHospitalResponse>
 
-    suspend fun addRecord(token: String,addRecord: AddRecord): Response<AddRecordResponse>
+    suspend fun addRecord(addRecord: AddRecord): Response<AddRecordResponse>
 
     suspend fun uplodImage(image: MultipartBody.Part
     ): Response<UploadImageResponse>

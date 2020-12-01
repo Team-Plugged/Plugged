@@ -26,6 +26,7 @@ import com.plugged.viewmodel.PluggedViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.fragment_login.view.*
+import timber.log.Timber
 
 @AndroidEntryPoint
 class LoginFragment : DialogFragment() {
@@ -113,12 +114,13 @@ class LoginFragment : DialogFragment() {
                 view.btn_add.visibility = View.INVISIBLE
                 viewModel.LoginPatient(Login)
             } else {
-                startActivity(Intent(activity, HospitalActivity::class.java))
-//                viewModel.LoginHospital(Login)
+//                startActivity(Intent(activity, HospitalActivity::class.java))
+                viewModel.LoginHospital(Login)
 
             }
 
 
+            //Login response ViewModel
             viewModel.loginResponse.observe(viewLifecycleOwner, Observer { response ->
 
                 when (response) {
@@ -136,7 +138,8 @@ class LoginFragment : DialogFragment() {
                             viewModel.savePatient(Patient_Data)
                             MyPreferences(activity).is_staff = false
                             MyPreferences(activity).logged_in = true
-                            Log.d(TAG, Patient_Data.toString())
+//                            Log.d(TAG, Patient_Data.toString())
+                            Timber.d(Patient_Data.toString())
                             startActivity(Intent(activity, PatientActivity::class.java))
 
 

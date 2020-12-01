@@ -65,10 +65,8 @@ class AddRecordFragment : Fragment() {
                 AddRecord(allergies, diagnosis, notes, patientEmail, prescription, symptoms)
 
 
-
-
             if (token !== "") {
-                viewModel.addPatientRecord(token, record)
+                viewModel.addPatientRecord(record)
 
             }
 
@@ -78,17 +76,20 @@ class AddRecordFragment : Fragment() {
 
                     is Resource.Loading -> {
 
+                        progressBar.visibility = View.VISIBLE
                     }
 
                     is Resource.Success -> {
                         response.data?.let { data ->
+                            progressBar.visibility = View.INVISIBLE
+
                             Log.e(TAG,data.toString())
                         }
 
                     }
 
                     is Resource.Error -> {
-
+                        progressBar.visibility = View.INVISIBLE
                         response.message?.let {
                             Toast.makeText(activity, "$it", Toast.LENGTH_SHORT)
                                 .show()

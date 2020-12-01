@@ -31,6 +31,10 @@ class ApiHelperImplementation @Inject constructor(private val api: PluggedApi, v
         return db.deletePatient()
     }
 
+    override suspend fun getRecords(): Response<HealthRecordsResponse> {
+        return api.getRecords()
+    }
+
     override suspend fun insertToken(token: Token): Long {
         return db.insertToken(token)
     }
@@ -52,8 +56,8 @@ class ApiHelperImplementation @Inject constructor(private val api: PluggedApi, v
        return  api.login_hospital(login_hospital)
     }
 
-    override suspend fun addRecord(token: String,addRecord: AddRecord): Response<AddRecordResponse> {
-        return  api.addRecord(token,addRecord)
+    override suspend fun addRecord(addRecord: AddRecord): Response<AddRecordResponse> {
+        return  api.addRecord(addRecord)
     }
 
     override suspend fun uplodImage(image: MultipartBody.Part): Response<UploadImageResponse> {
