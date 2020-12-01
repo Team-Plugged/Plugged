@@ -10,6 +10,7 @@ import com.plugged.R
 import com.plugged.models.HealthRecordsResponseItem
 import kotlinx.android.synthetic.main.patient_record.view.*
 import kotlinx.android.synthetic.main.patient_record.view.edit_prescription
+import java.text.SimpleDateFormat
 
 class RecordsRecyclerView(private val ItemsList: List<HealthRecordsResponseItem>) :
     RecyclerView.Adapter<RecordsRecyclerView.RecyclerViewHolder>() {
@@ -41,13 +42,19 @@ class RecordsRecyclerView(private val ItemsList: List<HealthRecordsResponseItem>
         private val note: TextView = itemview.edit_notes
         private val allergies: TextView = itemview.edit_allergies
         private val symptoms: TextView = itemview.edit_symptoms
+        private val hospital:TextView = itemview.hospital
 
 
 
 
 
         fun bind(record: HealthRecordsResponseItem) {
-            date.text = record.createdAt
+            val parser =  SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+            val formatter = SimpleDateFormat("dd-MMMM-yyyy")
+            val formattedDate = formatter.format(parser.parse(record.createdAt))
+
+            hospital.text = record.hospital.hospital
+            date.text = formattedDate
             prescription.text=record.prescription
             diagnosis.text=record.diagnosis
             note.text=record.notes

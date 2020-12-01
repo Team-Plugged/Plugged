@@ -72,7 +72,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Date of Birth"
+        android:text=""
         android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/guideline8"
@@ -93,10 +93,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Height"
-        android:textStyle="bold"
         android:textColor="@color/black"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/guideline8"
-        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <TextView
         android:id="@+id/height"

@@ -41,9 +41,9 @@ private const val REQUEST_CODE_IMAGE_PICK = 100
 
 @AndroidEntryPoint
 class AddPatientFragment : Fragment() {
-
-    private var imageUri: Uri? = null
-    private val imageRef = Firebase.storage.reference
+//
+//    private var imageUri: Uri? = null
+//    private val imageRef = Firebase.storage.reference
     private var imageUrl = ""
     private val viewModel: PluggedViewModel by viewModels()
     var timer = Timer()
@@ -367,8 +367,8 @@ class AddPatientFragment : Fragment() {
             data?.data?.let {
 
                 progressBar.visibility = View.VISIBLE
-                imageUri = it
-                uploadImage()
+//                imageUri = it
+//                uploadImage()
                 progressBar.visibility = View.VISIBLE
 
 //                try {
@@ -409,37 +409,37 @@ class AddPatientFragment : Fragment() {
 
     }
 
-    private fun uploadImage() {
-        if (imageUri != null) {
-            progressBar.visibility = View.VISIBLE
-            val ref = imageRef.child("uploads/" + UUID.randomUUID().toString())
-            val uploadTask = ref.putFile(imageUri!!)
-
-            uploadTask.continueWithTask(Continuation<UploadTask.TaskSnapshot, Task<Uri>> { task ->
-                if (!task.isSuccessful) {
-                    progressBar.visibility = View.INVISIBLE
-
-                    task.exception?.let {
-                        throw it
-                    }
-                }
-                return@Continuation ref.downloadUrl
-            }).addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    progressBar.visibility = View.INVISIBLE
-
-                    imageUrl = task.result.toString()
-                } else {
-                    // Handle failures
-                }
-            }.addOnFailureListener {
-                Toast.makeText(activity, "Sorry an Error Occured", Toast.LENGTH_SHORT).show()
-            }
-        } else {
-            Toast.makeText(activity, "Please Upload an Image", Toast.LENGTH_SHORT).show()
-
-        }
-    }
+//    private fun uploadImage() {
+//        if (imageUri != null) {
+//            progressBar.visibility = View.VISIBLE
+//            val ref = imageRef.child("uploads/" + UUID.randomUUID().toString())
+//            val uploadTask = ref.putFile(imageUri!!)
+//
+//            uploadTask.continueWithTask(Continuation<UploadTask.TaskSnapshot, Task<Uri>> { task ->
+//                if (!task.isSuccessful) {
+//                    progressBar.visibility = View.INVISIBLE
+//
+//                    task.exception?.let {
+//                        throw it
+//                    }
+//                }
+//                return@Continuation ref.downloadUrl
+//            }).addOnCompleteListener { task ->
+//                if (task.isSuccessful) {
+//                    progressBar.visibility = View.INVISIBLE
+//
+//                    imageUrl = task.result.toString()
+//                } else {
+//                    // Handle failures
+//                }
+//            }.addOnFailureListener {
+//                Toast.makeText(activity, "Sorry an Error Occured", Toast.LENGTH_SHORT).show()
+//            }
+//        } else {
+//            Toast.makeText(activity, "Please Upload an Image", Toast.LENGTH_SHORT).show()
+//
+//        }
+//    }
 
 
 }

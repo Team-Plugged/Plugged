@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.plugged.Adapters.RecordsRecyclerView
 import com.plugged.R
 import com.plugged.models.HealthRecordsResponseItem
 import com.plugged.utils.Constants
@@ -76,6 +77,10 @@ class RecordsFragment : Fragment() {
                                 it.patientEmail == email
                             }
                         }
+
+                        val adapter = RecordsRecyclerView(records)
+                        recyclerView.adapter = adapter
+                        adapter.notifyDataSetChanged()
 
                     }
 
