@@ -13,6 +13,14 @@ android {
     buildToolsVersion "30.0.0"
 
 
+    dataBinding {
+        enabled = true
+    }
+
+    buildFeatures {
+        dataBinding = true
+    }
+
     defaultConfig {
         applicationId "com.plugged"
         minSdkVersion 21

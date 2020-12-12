@@ -58,19 +58,21 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
     fun setData(patient:LoginResponse)
     {
+
+        binding.gender.text = patient.gender
         gender.text = patient.gender
-        weight.text =patient.weight.toString()
-        height.text = patient.height.toString()
-        f_name.text = patient.firstname
-        l_name.text = patient.lastname
-        email.text = patient.email
-        text_dob.text = patient.dateOfBirth
-        text_phone.text = patient.contactInfo
-        address.text = patient.address
+        binding.weight.text =patient.weight.toString()
+        binding.height.text = patient.height.toString()
+        binding.fName.text = patient.firstname
+        binding.lName.text = patient.lastname
+        binding.email.text = patient.email
+        binding.textDob.text = patient.dateOfBirth
+        binding.textPhone.text = patient.contactInfo
+        binding.address.text = patient.address
 
         Picasso.get()
             .load(patient.image)
-            .into(profile_image)
+            .into(binding.profileImage)
 
 
     }
