@@ -5,6 +5,7 @@ import androidx.room.Room
 import com.plugged.api.ApiHelper
 import com.plugged.api.ApiHelperImplementation
 import com.plugged.api.PluggedApi
+import com.plugged.api.ServiceInterceptor
 import com.plugged.db.PatientDao
 import com.plugged.db.PatientDb
 import com.plugged.utils.Constants.Companion.BASE_URL
@@ -60,6 +61,7 @@ class ApplicationModule {
             .connectTimeout(120, TimeUnit.SECONDS) //Backend is really slow
             .writeTimeout(120, TimeUnit.SECONDS)
             .readTimeout(120, TimeUnit.SECONDS)
+            .addNetworkInterceptor(ServiceInterceptor())
 //            .authenticator(TokenAuthenticator(db))
 //            .followRedirects(FALSE)
 //            .followSslRedirects(FALSE)

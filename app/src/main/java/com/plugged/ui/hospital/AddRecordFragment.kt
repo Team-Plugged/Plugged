@@ -67,40 +67,49 @@ class AddRecordFragment : Fragment() {
 
             if (token !== "") {
                 viewModel.addPatientRecord(record)
+                Log.e(TAG,"request sent")
+
 
             }
 
-            viewModel.addRecord.observe(viewLifecycleOwner, Observer { response ->
-
-                when (response) {
-
-                    is Resource.Loading -> {
-
-                        progressBar.visibility = View.VISIBLE
-                    }
-
-                    is Resource.Success -> {
-                        response.data?.let { data ->
-                            progressBar.visibility = View.INVISIBLE
-
-                            Log.e(TAG,data.toString())
-                        }
-
-                    }
-
-                    is Resource.Error -> {
-                        progressBar.visibility = View.INVISIBLE
-                        response.message?.let {
-                            Toast.makeText(activity, "$it", Toast.LENGTH_SHORT)
-                                .show()
-                        }
-                    }
-                }
-
-            })
 
 
         }
+
+        viewModel.addRecord.observe(viewLifecycleOwner, Observer { response ->
+
+            when (response) {
+
+                is Resource.Loading -> {
+                    progressBar.visibility = View.VISIBLE
+                    Log.e(TAG,"LOADING")
+
+                }
+
+                is Resource.Success -> {
+                    response.data?.let { data ->
+                        progressBar.visibility = View.INVISIBLE
+                        Log.e(TAG,"SUCCESS")
+
+                        Log.e(TAG,data.toString())
+                    }
+
+                }
+
+                is Resource.Error -> {
+                    progressBar.visibility = View.INVISIBLE
+                    response.message?.let {
+                        Log.e(TAG,it)
+                        Log.e(TAG,"ERROR")
+
+                        Toast.makeText(activity, "$it", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                }
+            }
+
+        })
+
 
 
     }

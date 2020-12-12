@@ -37,7 +37,6 @@ interface PluggedApi {
     @Headers("Content-Type: application/json")
     @POST("healthrecords")
     suspend fun addRecord(
-//        @Header("Authorization") token: String,
         @Body record: AddRecord
     ): Response<AddRecordResponse>
 

@@ -44,8 +44,7 @@ class PluggedViewModel @ViewModelInject constructor(
     var record_data:AddRecordResponse?=null
     val patientProfile:MutableLiveData<LoginResponse> = MutableLiveData()
     var patient_data: LiveData<LoginResponse> = MutableLiveData()
-    val uploadPic:MutableLiveData<Resource<UploadImageResponse>> = MutableLiveData()
-
+    val uploadPic:MutableLiveData<Resource<UploadImageResponse>> = MutableLiveData()//token:String,token:String,token:String,
     var registerHospital:MutableLiveData<Resource<RegisterHospitalResponse>> = MutableLiveData()
     var loginHospital:MutableLiveData<Resource<LoginHospitalResponse>> = MutableLiveData()
 
@@ -294,7 +293,6 @@ class PluggedViewModel @ViewModelInject constructor(
 
     private suspend fun addRecord(record: AddRecord)
     {
-
         addRecord.postValue(Resource.Loading())
         try{
             if (networkHelper.isNetworkConnected())
