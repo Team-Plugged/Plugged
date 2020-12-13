@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -82,16 +83,14 @@ class AddRecordFragment : Fragment() {
 
                 is Resource.Loading -> {
                     progressBar.visibility = View.VISIBLE
-                    Log.e(TAG,"LOADING")
 
                 }
 
                 is Resource.Success -> {
                     response.data?.let { data ->
                         progressBar.visibility = View.INVISIBLE
-                        Log.e(TAG,"SUCCESS")
+                        successDialog()
 
-                        Log.e(TAG,data.toString())
                     }
 
                 }
@@ -99,9 +98,6 @@ class AddRecordFragment : Fragment() {
                 is Resource.Error -> {
                     progressBar.visibility = View.INVISIBLE
                     response.message?.let {
-                        Log.e(TAG,it)
-                        Log.e(TAG,"ERROR")
-
                         Toast.makeText(activity, "$it", Toast.LENGTH_SHORT)
                             .show()
                     }
@@ -119,5 +115,26 @@ class AddRecordFragment : Fragment() {
         val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE) ?: return
          token = sharedPref.getString(SHARED_PREF, "No value").toString()
     }
+
+    fun successDialog() {
+        val mDialogView = LayoutInflater.from(activity).inflate(R.layout.success_layout, null)
+        //AlertDialogBuilder
+        val mBuilder = activity?.let {
+            AlertDialog.Builder(it)
+                .setView(mDialogView)
+        }
+
+        var mAlertDialog = mBuilder?.show()!!
+//        timer.schedule(object : TimerTask() {
+//            override fun run() {
+//            }
+//        }, DELAY)
+//        mAlertDialog?.dismiss()
+//
+//        timer.cancel()
+//        timer.purge()
+
+    }
+
 
 }

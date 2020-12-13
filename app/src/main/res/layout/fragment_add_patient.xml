@@ -2,12 +2,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
+    android:paddingBottom="16dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="16dp"
     tools:context=".ui.hospital.AddPatientFragment">
 
     <TextView
@@ -81,7 +83,7 @@
         android:layout_marginStart="8dp"
         android:background="@drawable/edit_text_bg"
         android:ems="10"
-        android:hint="Ht"
+        android:hint="Ht cm"
         android:inputType="number"
         android:padding="4dp"
         app:layout_constraintBottom_toBottomOf="@+id/gender_spinner"
@@ -96,7 +98,7 @@
         android:layout_marginEnd="8dp"
         android:background="@drawable/edit_text_bg"
         android:ems="10"
-        android:hint="Wt"
+        android:hint="Wt kg"
         android:inputType="number"
         android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="@+id/edit_height"
@@ -165,6 +167,7 @@
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="18sp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintTop_toBottomOf="@+id/image" />
 
@@ -172,8 +175,8 @@
         android:id="@+id/progressBar"
         android:layout_width="80dp"
         android:layout_height="80dp"
+        android:layout_marginTop="300dp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -203,7 +206,7 @@
         android:background="@drawable/edit_text_bg"
         android:layout_marginTop="24dp"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="number"
         android:hint="Contact Number"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintStart_toStartOf="@+id/guideline3"

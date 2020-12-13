@@ -66,7 +66,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         binding.fName.text = patient.firstname
         binding.lName.text = patient.lastname
         binding.email.text = patient.email
-        binding.textDob.text = patient.dateOfBirth
         binding.textPhone.text = patient.contactInfo
         binding.address.text = patient.address
 

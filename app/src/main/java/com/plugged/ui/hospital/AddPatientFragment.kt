@@ -257,7 +257,6 @@ class AddPatientFragment : Fragment() {
                         progress_bar.visibility = View.INVISIBLE
 
                         response?.data.let {
-                            Log.d(TAG, it.toString())
                             successDialog()
 
                         }
@@ -398,14 +397,14 @@ class AddPatientFragment : Fragment() {
         }
 
         var mAlertDialog = mBuilder?.show()!!
-        timer.schedule(object : TimerTask() {
-            override fun run() {
-            }
-        }, DELAY)
-        mAlertDialog?.dismiss()
-
-        timer.cancel()
-        timer.purge()
+//        timer.schedule(object : TimerTask() {
+//            override fun run() {
+//            }
+//        }, DELAY)
+//        mAlertDialog?.dismiss()
+//
+//        timer.cancel()
+//        timer.purge()
 
     }
 

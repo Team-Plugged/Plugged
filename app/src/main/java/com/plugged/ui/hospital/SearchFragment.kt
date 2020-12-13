@@ -110,7 +110,7 @@ class SearchFragment : Fragment() {
         email.text = patient.email
         text_dob.text = patient.age.toString()
 //        text_phone.text = patien
-//        address.text = patient.a
+//        address.text = patient.
 
         Picasso.get()
             .load(patient.image)
