@@ -4,44 +4,44 @@ Plugged,  An Android application for managing Hospital Patient Records
 </p>
 
 <p float="center">
-<img src="/app/src/main/res/drawable/sauce1.png" alt="plugged" width="300">
-<img src="/app/src/main/res/drawable/sauce2.png" alt="plugged" width="300">
-<img src="/app/src/main/res/drawable/sauce3.png" alt="plugged" width="300">
+<img src="/app/src/main/res/drawable/sauce1.png" alt="plugged" width="250">
+<img src="/app/src/main/res/drawable/sauce2.png" alt="plugged" width="250">
+<img src="/app/src/main/res/drawable/sauce3.png" alt="plugged" width="250">
 
 </p>
 
 <p float="center">
-<img src="/app/src/main/res/drawable/sauce4.png" alt="plugged" width="300">
-<img src="/app/src/main/res/drawable/sauce5.png" alt="plugged" width="300">
-<img src="/app/src/main/res/drawable/sauce6.png" alt="plugged" width="300">
+<img src="/app/src/main/res/drawable/sauce4.png" alt="plugged" width="250">
+<img src="/app/src/main/res/drawable/sauce5.png" alt="plugged" width="250">
+<img src="/app/src/main/res/drawable/sauce6.png" alt="plugged" width="250">
 
 </p>
 
 <p float="center">
-<img src="/app/src/main/res/drawable/sauce7.png" alt="plugged" width="300">
-<img src="/app/src/main/res/drawable/sauce8.png" alt="plugged" width="300">
-<img src="/app/src/main/res/drawable/sauce9.png" alt="plugged" width="300">
+<img src="/app/src/main/res/drawable/sauce7.png" alt="plugged" width="250">
+<img src="/app/src/main/res/drawable/sauce8.png" alt="plugged" width="250">
+<img src="/app/src/main/res/drawable/sauce9.png" alt="plugged" width="250">
 
 </p>
 
-<p float="left">
-  <img src="/app/src/main/res/drawable/sauce10.png" alt="plugged" width="300">
-<img src="/app/src/main/res/drawable/sauce11.png" alt="plugged" width="300">
-<img src="/app/src/main/res/drawable/sauce12.png" alt="plugged" width="300">
-</p>
-  
-<p float="left">
-  <img src="/app/src/main/res/drawable/sauce13.png" alt="plugged" width="300">
-<img src="/app/src/main/res/drawable/sauce14.png" alt="plugged" width="300">
-<img src="/app/src/main/res/drawable/sauce15.png" alt="plugged" width="300">
+<p float="center">
+  <img src="/app/src/main/res/drawable/sauce10.png" alt="plugged" width="250">
+<img src="/app/src/main/res/drawable/sauce11.png" alt="plugged" width="250">
+<img src="/app/src/main/res/drawable/sauce12.png" alt="plugged" width="250">
 </p>
   
-<p float="left">
+<p float="center">
+  <img src="/app/src/main/res/drawable/sauce13.png" alt="plugged" width="250">
+<img src="/app/src/main/res/drawable/sauce14.png" alt="plugged" width="250">
+<img src="/app/src/main/res/drawable/sauce15.png" alt="plugged" width="250">
+</p>
+  
+<p float="center">
 
 
-<img src="/app/src/main/res/drawable/sauce16.png" alt="plugged" width="300">
-<img src="/app/src/main/res/drawable/sauce17.png" alt="plugged" width="300">
-<img src="/app/src/main/res/drawable/sauce18.png" alt="plugged" width="300">
+<img src="/app/src/main/res/drawable/sauce16.png" alt="plugged" width="250">
+<img src="/app/src/main/res/drawable/sauce17.png" alt="plugged" width="250">
+<img src="/app/src/main/res/drawable/sauce18.png" alt="plugged" width="250">
 
 </p>
 
