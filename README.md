@@ -3,6 +3,17 @@
 Plugged,  An Android application for managing Hospital Patient Records
 </p>
 
+
+  
+<p float="center">
+
+
+<img src="/app/src/main/res/drawable/sauce16.png" alt="plugged" width="250">
+<img src="/app/src/main/res/drawable/sauce17.png" alt="plugged" width="250">
+<img src="/app/src/main/res/drawable/sauce18.png" alt="plugged" width="250">
+
+</p>
+
 <p float="center">
 <img src="/app/src/main/res/drawable/sauce1.png" alt="plugged" width="250">
 <img src="/app/src/main/res/drawable/sauce2.png" alt="plugged" width="250">
@@ -35,15 +46,7 @@ Plugged,  An Android application for managing Hospital Patient Records
 <img src="/app/src/main/res/drawable/sauce14.png" alt="plugged" width="250">
 <img src="/app/src/main/res/drawable/sauce15.png" alt="plugged" width="250">
 </p>
-  
-<p float="center">
 
-
-<img src="/app/src/main/res/drawable/sauce16.png" alt="plugged" width="250">
-<img src="/app/src/main/res/drawable/sauce17.png" alt="plugged" width="250">
-<img src="/app/src/main/res/drawable/sauce18.png" alt="plugged" width="250">
-
-</p>
 
 ## App Features 
 - Add Patient to the Database
